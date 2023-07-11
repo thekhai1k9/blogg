@@ -21,6 +21,10 @@ const Single: React.FC = () => {
   const currentUser: any = useContext(AuthContext)
   const { id } = useParams<{ id: any }>()
   const [dataPost, setDataPost] = useState<dataPostProps>()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [comments, setComments] = useState<any>()
+  const [newComment, setNewComment] = useState<string>('')
+  console.log('file: Single.tsx:27 ~ newComment:', newComment)
 
   useEffect(() => {
     const fetchGetDetail = async () => {
@@ -33,6 +37,42 @@ const Single: React.FC = () => {
     }
     fetchGetDetail()
   }, [id])
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await postApi.detailCommentPost(id)
+        setComments(response.data.data)
+      } catch (error) {
+        console.error('Lỗi khi lấy danh sách bình luận:', error)
+      }
+    }
+    fetchComments()
+  }, [id])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (newComment) {
+      try {
+        await postApi.createCommentPost({
+          comment: newComment,
+          post_id: Number(id),
+          user_id: currentUser?.currentUser?.id
+        })
+        setNewComment('')
+        // Sau khi tạo bình luận mới, cập nhật danh sách bình luận bằng cách gọi lại API lấy danh sách
+        const response = await postApi.detailCommentPost(id)
+        setComments(response.data.data)
+      } catch (error) {
+        console.error('Lỗi khi gửi bình luận:', error)
+      }
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNewComment(e.target.value)
+  }
+
   return (
     <Wrapper>
       {dataPost ? (
@@ -64,6 +104,31 @@ const Single: React.FC = () => {
         </div>
       ) : (
         <span>Loading......</span>
+      )}
+
+      {/* Hiển thị danh sách bình luận */}
+      <div className='comments-wrapper'>
+        <h2>Comments</h2>
+        {comments &&
+          comments.map((comment: any) => (
+            <div key={comment.id} className='comment' style={{ display: 'flex', alignItems: 'center' }}>
+              <div className='comment-user'>
+                <img style={{ height: 30, borderRadius: '50%' }} src={comment.user.image} alt='User Avatar' />
+                <div className='comment-info'>
+                  <span>{`${comment.user.lastName} ${comment.user.firstName}`}</span>
+                  <p>{formatDateTime(comment.createdAt)}</p>
+                </div>
+              </div>
+              <p>{comment.comment}</p>
+            </div>
+          ))}
+      </div>
+      {/* Form để người dùng nhập bình luận mới */}
+      {currentUser && (
+        <form onSubmit={handleSubmit}>
+          <textarea value={newComment} onChange={handleChange} />
+          <button type='submit'>Submit</button>
+        </form>
       )}
     </Wrapper>
   )

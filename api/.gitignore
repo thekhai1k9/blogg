@@ -5,5 +5,5 @@ dist
 .idea/
 .env
 
-package-lock.json/
-.gitignore/
+package-lock.json
+.gitignore

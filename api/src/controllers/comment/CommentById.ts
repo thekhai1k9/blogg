@@ -11,12 +11,6 @@ const CommentById = async (req: Request, res: Response) => {
     const postId = req.params.id
     const comments = await Comment.findAll({ where: { post_id: postId }})
 
-    if (!comments || comments.length === 0) {
-      return res.status(404).json({
-        data: null,
-        message: "Comment not found"
-      })
-    }
     // Lấy danh sách userId từ các bình luận
     const userIds = comments.map((comment) => comment.user_id)
 

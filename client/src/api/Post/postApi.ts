@@ -20,6 +20,24 @@ const postApi = {
   createPost: (params: object) => {
     const url = `/create-post`
     return axiosClient.get(url, params)
+  },
+
+  // Comment api
+  createCommentPost: (params: object) => {
+    const url = `/create-comment-post`
+    return axiosClient.post(url, params)
+  },
+  detailCommentPost: (id: object) => {
+    const url = `/get-comment-post/${id}`
+    return axiosClient.get(url, id)
+  },
+  updateCommentPost: (params: object, id: any) => {
+    const url = `/update-comment-post/${id}`
+    return axiosClient.put(url, params)
+  },
+  deleteCommentPost: (id: any) => {
+    const url = `/delete-comment-post/${id}`
+    return axiosClient.delete(url, id)
   }
 }
 

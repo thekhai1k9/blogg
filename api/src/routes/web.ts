@@ -8,6 +8,10 @@ import CreatePost from "../controllers/post/CreatePost"
 import DeletePost from "../controllers/post/DeletePost"
 import UpdatePost from "../controllers/post/UpdatePost"
 import GetPosts from "../controllers/post/GetPost"
+import CommentById from "../controllers/comment/CommentById"
+import DeleteComment from "../controllers/comment/DeleteComment"
+import UpdateComment from "../controllers/comment/UpdateComment"
+import CreateComment from "../controllers/comment/CreateComment"
 
 let router = express.Router()
 
@@ -16,7 +20,7 @@ const initWebRoutes = (app: any) => {
     router.get('/danh-sach-post', GetPosts)
     router.get('/chi-tiet-post/:id', getPostById)
     router.post('/create-post', CreatePost)
-    router.delete('/delete-post', DeletePost)
+    router.delete('/delete-post/:id', DeletePost)
     router.put('/update-post/:id', UpdatePost)
 
 
@@ -26,6 +30,13 @@ const initWebRoutes = (app: any) => {
     router.post('/login', loginController)
     router.post('/register', registerController)
     router.get('/logout', logoutController)
+
+
+    // Comment post
+    router.post('/create-comment-post', CreateComment)
+    router.get('/get-comment-post/:id', CommentById)
+    router.put('/update-comment-post/:id', UpdateComment)
+    router.delete('/delete-comment-post/:id', DeleteComment)
 
     return app.use("/api", router)
 }

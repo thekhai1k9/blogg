@@ -19,7 +19,7 @@ const postApi = {
   //Create post
   createPost: (params: object) => {
     const url = `/create-post`
-    return axiosClient.get(url, params)
+    return axiosClient.post(url, params)
   },
 
   // Comment api

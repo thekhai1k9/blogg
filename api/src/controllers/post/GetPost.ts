@@ -1,17 +1,18 @@
 import { Response, Request } from "express"
-import { Op } from 'sequelize';
-import Post from "../../models/post";
+import { Op } from 'sequelize'
+import Post from "../../models/post"
 
 const  GetPosts =  async (req: Request, res: Response) => {
     const { filter, page, limit } = req.body
     try {
         
-        let filterConditions = {};
+        let filterConditions = {}
         if (filter) {
             filterConditions = {
                 [Op.or]: [
                   { title: { [Op.like]: `%${filter}%` } },
-                  { desc: { [Op.like]: `%${filter}%` } }
+                  { desc: { [Op.like]: `%${filter}%` } },
+                  { type_post: { [Op.like]: `%${filter}%` } }
                 ]
             }
         }
@@ -21,14 +22,14 @@ const  GetPosts =  async (req: Request, res: Response) => {
         const postsPerPage = parseInt(limit as string, 10) || 10
 
         // Tính toán offset và số lượng bài post trên mỗi trang
-        const offset = (currentPage - 1) * postsPerPage;
+        const offset = (currentPage - 1) * postsPerPage
         const limitValue = postsPerPage
 
         // Lấy danh sách bài post với filter và phân trang
         const { count, rows } = await Post.findAndCountAll({
             where: filterConditions,
             offset,
-            limit: limitValue,
+            limit: limitValue
         })
 
         return res.status(200).json({

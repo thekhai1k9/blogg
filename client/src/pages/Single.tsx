@@ -24,7 +24,7 @@ const Single: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [comments, setComments] = useState<any>()
   const [newComment, setNewComment] = useState<string>('')
-  console.log('file: Single.tsx:27 ~ newComment:', newComment)
+  const [showAllComments, setShowAllComments] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchGetDetail = async () => {
@@ -73,6 +73,10 @@ const Single: React.FC = () => {
     setNewComment(e.target.value)
   }
 
+  const handleToggleComments = () => {
+    setShowAllComments(!showAllComments)
+  }
+
   return (
     <Wrapper>
       {dataPost ? (
@@ -110,26 +114,37 @@ const Single: React.FC = () => {
       <div className='comments-wrapper'>
         <h2>Comments</h2>
         {comments &&
-          comments.map((comment: any) => (
-            <div key={comment.id} className='comment' style={{ display: 'flex', alignItems: 'center' }}>
-              <div className='comment-user'>
-                <img style={{ height: 30, borderRadius: '50%' }} src={comment.user.image} alt='User Avatar' />
+          comments.slice(0, showAllComments ? comments.length : 5).map((comment: any) => (
+            <div key={comment.id} className='comment'>
+              <div
+                className='comment-user'
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+              >
+                <img
+                  style={{ height: 30, width: 30, borderRadius: '50%' }}
+                  src={comment.user.image}
+                  alt='User Avatar'
+                />
                 <div className='comment-info'>
                   <span>{`${comment.user.lastName} ${comment.user.firstName}`}</span>
                   <p>{formatDateTime(comment.createdAt)}</p>
+                </div>
+                <div>
+                  <i className='fa-solid fa-ellipsis-vertical'></i>
                 </div>
               </div>
               <p>{comment.comment}</p>
             </div>
           ))}
+        {comments && comments.length > 5 && (
+          <button onClick={handleToggleComments}>{showAllComments ? 'Hide' : 'Read more'}</button>
+        )}
       </div>
       {/* Form để người dùng nhập bình luận mới */}
-      {currentUser && (
-        <form onSubmit={handleSubmit}>
-          <textarea value={newComment} onChange={handleChange} />
-          <button type='submit'>Submit</button>
-        </form>
-      )}
+      <form onSubmit={handleSubmit}>
+        <textarea value={newComment} onChange={handleChange} />
+        <button type='submit'>Submit</button>
+      </form>
     </Wrapper>
   )
 }

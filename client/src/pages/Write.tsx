@@ -44,7 +44,8 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: ''
+          image: '',
+          user_id: 1
         }
         await postApi.updatePosts(updatedData, id)
       } catch (error) {
@@ -58,8 +59,11 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: ''
+          image: '',
+          user_id: 1,
+          date: ''
         }
+        console.log('file: Write.tsx:63 ~ handleSubmit ~ createDate:', createDate)
         await postApi.createPost(createDate)
       } catch (error) {
         console.error('Lỗi khi tạo mới bài viết:', error)

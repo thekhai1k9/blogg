@@ -18,7 +18,7 @@ const Home: React.FC = () => {
         const response = await postApi.getPosts({
           filter: '',
           page: 1,
-          limit: 20
+          limit: 10
         })
         setPosts(response.data.posts)
       } catch (error) {

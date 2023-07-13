@@ -8,7 +8,7 @@ export const formatDateTime = (dateTimeString: string): string => {
   const hours = date.getHours()
   const minutes = date.getMinutes()
 
-  const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}`
+  const formattedDateTime = `${day}-${month}-${year} ${hours}giờ:${minutes}phút`
 
   return formattedDateTime
 }

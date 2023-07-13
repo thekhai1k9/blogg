@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import postApi from '../api/Post/postApi'
 import Button from '../components/Button'
 
 const Write: React.FC = () => {
+  const navigate = useNavigate()
   const { id } = useParams<{ id: any }>()
   //check edit mode
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -48,6 +49,7 @@ const Write: React.FC = () => {
           user_id: 1
         }
         await postApi.updatePosts(updatedData, id)
+        navigate('/')
       } catch (error) {
         console.error('Lỗi khi cập nhật bài viết:', error)
       }
@@ -65,6 +67,7 @@ const Write: React.FC = () => {
         }
         console.log('file: Write.tsx:63 ~ handleSubmit ~ createDate:', createDate)
         await postApi.createPost(createDate)
+        navigate('/')
       } catch (error) {
         console.error('Lỗi khi tạo mới bài viết:', error)
       }
@@ -96,9 +99,6 @@ const Write: React.FC = () => {
         <div className='write_wrapper-item'>
           <h1>Publish</h1>
           <span>
-            <b>Status: </b> Draft
-          </span>
-          <span>
             <b>Visibility: </b> Public
           </span>
           <input style={{ display: 'none' }} type='file' name='' id='file' />
@@ -106,31 +106,7 @@ const Write: React.FC = () => {
             Upload file
           </label>
           <div className='write_wrapper-item--button'>
-            <Button>Save Draft</Button>
             <div onClick={handleSubmit}>{isEditMode ? <Button>Update Post</Button> : <Button>Create Post</Button>}</div>
-          </div>
-        </div>
-        <div className='write_wrapper-item'>
-          <h1>Directory Pages</h1>
-          <div className='write_wrapper-item--category'>
-            <input type='radio' name='cat' value='art' id='art' />
-            <label htmlFor='art'>Home</label>
-          </div>
-          <div className='write_wrapper-item--category'>
-            <input type='radio' name='cat' value='art_1' id='art_1' />
-            <label htmlFor='art_1'>Phần mềm</label>
-          </div>
-          <div className='write_wrapper-item--category'>
-            <input type='radio' name='cat' value='art_2' id='art_2' />
-            <label htmlFor='art_2'>Tips</label>
-          </div>
-          <div className='write_wrapper-item--category'>
-            <input type='radio' name='cat' value='art_3' id='art_3' />
-            <label htmlFor='art_3'>Share</label>
-          </div>
-          <div className='write_wrapper-item--category'>
-            <input type='radio' name='cat' value='art_4' id='art_4' />
-            <label htmlFor='art_4'>Code</label>
           </div>
         </div>
       </div>

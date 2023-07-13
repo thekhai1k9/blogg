@@ -8,8 +8,8 @@ export const ListTitle = styled.p`
 `
 
 export const Wrapper = styled.div`
-  padding-left: 24px;
-  padding-right: 12px;
+  padding-left: 2px;
+  padding-right: 2px;
 `
 
 export const WrapperDatePicker = styled.div`

@@ -6,6 +6,7 @@ import postApi from '../api/Post/postApi'
 import Button from '../components/Button'
 import Form from 'react-bootstrap/Form'
 import Dropzone from 'react-dropzone'
+import { toolbarOptions } from '../utils/EditorModule'
 
 const Write: React.FC = () => {
   const navigate = useNavigate()
@@ -82,18 +83,22 @@ const Write: React.FC = () => {
     }
   }
 
+  const modules = {
+    toolbar: toolbarOptions
+  }
+
   return (
     <div className='write_wrapper'>
       <div className='write_wrapper-content'>
         {/* <input type='text' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} /> */}
         <div className='write_wrapper-editer'>
-          <ReactQuill className='editor' theme='snow' value={title} onChange={setTitle} />
+          <ReactQuill className='editor' theme='snow' value={title} onChange={setTitle} modules={modules} />
         </div>
         <div className='write_wrapper-editer'>
-          <ReactQuill className='editor' theme='snow' value={desc} onChange={setDesc} />
+          <ReactQuill className='editor' theme='snow' value={desc} onChange={setDesc} modules={modules} />
         </div>
         <div className='write_wrapper-editer'>
-          <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} />
+          <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} modules={modules} />
         </div>
         <Form.Select
           aria-label='Default select example'

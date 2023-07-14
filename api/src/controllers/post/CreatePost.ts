@@ -3,7 +3,7 @@ import Post from "../../models/post";
 import multer, { Multer } from "multer";
 import { storage } from "../../middleware/Uploadfile";
 
-const upload: Multer = multer({ storage: storage });
+const upload: Multer = multer({ storage: storage })
 const CreatePost = async (req: Request, res: Response) => {
   // Cấu hình middleware tải lên của multer
   try {

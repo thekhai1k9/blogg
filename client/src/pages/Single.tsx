@@ -80,7 +80,6 @@ const Single: React.FC = () => {
   const handleToggleComments = () => {
     setShowAllComments(!showAllComments)
   }
-  console.log(handleToggleComments)
 
   return (
     <Wrapper>

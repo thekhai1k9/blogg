@@ -70,7 +70,6 @@ const Write: React.FC = () => {
           user_id: 1,
           date: ''
         }
-        console.log('file: Write.tsx:63 ~ handleSubmit ~ createDate:', createDate)
         await postApi.createPost(createDate)
         navigate('/')
       } catch (error) {

@@ -35,7 +35,6 @@ const Home: React.FC = () => {
     fetchData()
   }, [])
 
-  console.log(posts)
   return (
     <Wrapper>
       <div className='home_wrapper'>

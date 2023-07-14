@@ -498,18 +498,40 @@
         }
       }
       .home_wrapper_slider {
-        padding: 10px;
         .home_wrapper_slider-box {
+          border-radius: 12px;
+          margin-top: 20px;
+          background: #fff;
+          padding: 16px;
+          img {
+            border-radius: 20px;
+            height: 260px;
+          }
+          h3 {
+            margin: 12px;
+            text-align: left;
+            font-size: 25px;
+            font-weight: 600;
+          }
         }
       }
       .home_wrapper-paginate {
         box-sizing: border-box;
         .home_wrapper-paginate-list {
           display: flex;
+          justify-content: center;
           list-style: none;
           text-align: center;
-          margin-top: 15px;
+          margin-top: 50px;
           margin-bottom: 30px;
+          li {
+            padding-left: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover {
+              color: #3277e7;
+            }
+          }
         }
       }
       .home_wrapper-detail {

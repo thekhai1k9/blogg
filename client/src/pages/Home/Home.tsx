@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import Menu from '../../components/Menu'
 import postApi from '../../api/Post/postApi'
 import { formatDateTime } from '../../helper/function_format'
+import Carousel from '../../components/Carousel'
+import SocialFooter from '../../components/SocialFooter'
 
 interface PostProps {
   id: number
@@ -64,22 +66,23 @@ const Home: React.FC = () => {
             </Row>
             <Row>
               <div className='home_wrapper_slider'>
-                <h3>Bài viết hay nhất</h3>
-                <div className='home_wrapper_slider-box'>Bài viết1</div>
+                <Carousel />
               </div>
             </Row>
             <Row>
               <div className='home_wrapper-paginate'>
                 <ul className='home_wrapper-paginate-list'>
+                  <li>Previous</li>
                   <li>1</li>
                   <li>2</li>
                   <li>3</li>
                   <li>4</li>
+                  <li>Nexts</li>
                 </ul>
               </div>
             </Row>
             <Row>
-              <div className='home_wrapper_social_footer'>Mạng xã hội footer</div>
+              <SocialFooter />
             </Row>
           </Col>
           <Col xs={4} style={{ paddingTop: 20 }}>

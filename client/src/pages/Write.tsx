@@ -19,16 +19,18 @@ const Write: React.FC = () => {
   const [desc, setDesc] = useState<string>('')
   const [typePost, setTypePost] = useState<string>('')
   const [image, setImage] = useState<File | null>(null)
+  const [imageURL, setImageURL] = useState<string>('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
-        const { title, content, desc, type_post } = response.data.data.post
+        const { title, content, desc, type_post, image } = response.data.data.post
         setTitle(title)
         setContent(content)
         setDesc(desc)
         setTypePost(type_post)
+        setImageURL(image)
         // setImage(image)
       } catch (error) {
         console.error('Lỗi khi lấy danh sách bài post:', error)
@@ -48,7 +50,7 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: image ? URL.createObjectURL(image) : '', // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
+          image: image ? URL.createObjectURL(image) : imageURL, // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
           user_id: 1
         }
         await postApi.updatePosts(updatedData, id)

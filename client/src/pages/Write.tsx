@@ -4,6 +4,8 @@ import 'react-quill/dist/quill.snow.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import postApi from '../api/Post/postApi'
 import Button from '../components/Button'
+import Form from 'react-bootstrap/Form'
+import Dropzone from 'react-dropzone'
 
 const Write: React.FC = () => {
   const navigate = useNavigate()
@@ -15,7 +17,7 @@ const Write: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
   const [typePost, setTypePost] = useState<string>('')
-  // const [image, setImage] = useState('');
+  const [image, setImage] = useState<File | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +47,7 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: '',
+          image: image ? URL.createObjectURL(image) : '', // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
           user_id: 1
         }
         await postApi.updatePosts(updatedData, id)
@@ -61,7 +63,7 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: '',
+          image: image ? URL.createObjectURL(image) : '', // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
           user_id: 1,
           date: ''
         }
@@ -71,6 +73,12 @@ const Write: React.FC = () => {
       } catch (error) {
         console.error('Lỗi khi tạo mới bài viết:', error)
       }
+    }
+  }
+
+  const handleImageUpload = (files: File[]) => {
+    if (files && files.length > 0) {
+      setImage(files[0])
     }
   }
 
@@ -87,13 +95,17 @@ const Write: React.FC = () => {
         <div className='write_wrapper-editer'>
           <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} />
         </div>
-        <select value={typePost} onChange={(e) => setTypePost(e.target.value)}>
-          <option value=''>Select Type</option>
+        <Form.Select
+          aria-label='Default select example'
+          value={typePost}
+          onChange={(e) => setTypePost(e.target.value)}
+          style={{ width: 10 }}
+        >
           <option value='CODE'>CODE</option>
           <option value='SHARE'>SHARE</option>
           <option value='PHANMEM'>PHANMEM</option>
           <option value='TIPS'>TIPS</option>
-        </select>
+        </Form.Select>
       </div>
       <div className='write_wrapper-menu'>
         <div className='write_wrapper-item'>
@@ -101,10 +113,18 @@ const Write: React.FC = () => {
           <span>
             <b>Visibility: </b> Public
           </span>
-          <input style={{ display: 'none' }} type='file' name='' id='file' />
-          <label className='write_wrapper-item--file' htmlFor='file'>
-            Upload file
-          </label>
+          <Dropzone onDrop={handleImageUpload}>
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps()} className='dropzone'>
+                <input {...getInputProps()} />
+                {image ? (
+                  <img src={URL.createObjectURL(image)} alt='Uploaded' className='uploaded-image' />
+                ) : (
+                  <p>Drag and drop an image here or click to select a file</p>
+                )}
+              </div>
+            )}
+          </Dropzone>
           <div className='write_wrapper-item--button'>
             <div onClick={handleSubmit}>{isEditMode ? <Button>Update Post</Button> : <Button>Create Post</Button>}</div>
           </div>

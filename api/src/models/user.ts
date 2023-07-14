@@ -10,6 +10,7 @@ export interface UserAttributes {
   password: string; 
   image: string;
   phone?: string;
+  isAdmin: boolean
 }
 
 class User extends Model<UserAttributes> implements UserAttributes {
@@ -21,6 +22,7 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public password!: string;
   public image!: string;
   public phone?: string;
+  public isAdmin!: boolean;
 
   static associate(models: any) {
     // Định nghĩa các mối quan hệ tại đây
@@ -68,6 +70,9 @@ User.init(
     phone: {
       type: DataTypes.STRING,
     },
+    isAdmin: {
+      type: DataTypes.BOOLEAN
+    }
   },
   {
     sequelize,

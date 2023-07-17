@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import postApi from '../api/Post/postApi'
+import postApi from '../api/post/postApi'
 import { AuthContext } from '../context/authContext'
 import { formatDateTime } from '../helper/function_format'
 import { Wrapper } from './styles'

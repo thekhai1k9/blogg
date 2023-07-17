@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import authApi from '../../api/Auth/authApi'
+import authApi from '../../api/auth/authApi'
 import { Wrapper } from '../../pages/styles'
 
 interface RegisterForm {

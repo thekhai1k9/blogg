@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Link, useNavigate } from 'react-router-dom'
-import authApi from '../../api/Auth/authApi'
+import authApi from '../../api/auth/authApi'
 import SocialPage from '../../components/SocialPage'
 import PostTrending from '../../components/PostTrending'
 

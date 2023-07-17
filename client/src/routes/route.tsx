@@ -6,6 +6,7 @@ import Single from '../pages/Single'
 import Write from '../pages/Write'
 import { Outlet, Route, Routes } from 'react-router-dom'
 import Footer from '../components/Footer'
+import EditInfomation from '../pages/EditInfomation'
 
 const Layout = () => {
   return (
@@ -23,6 +24,7 @@ const router = (
       <Route path='/' element={<Home />} />
       <Route path='/post/:id' element={<Single />} />
       <Route path='/write/:id' element={<Write />} />
+      <Route path='/edit-thong-tin' element={<EditInfomation />} />
     </Route>
     <Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />

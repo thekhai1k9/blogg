@@ -80,7 +80,6 @@ const Single: React.FC = () => {
   const handleToggleComments = () => {
     setShowAllComments(!showAllComments)
   }
-  console.log(handleToggleComments)
 
   return (
     <Wrapper>
@@ -90,11 +89,11 @@ const Single: React.FC = () => {
             <Col xs={8}>
               <div className='home_wrapper-detail'>
                 <h1 className='home_wrapper-title'>{dataPost.post.title}</h1>
-                <p className='home_wrapper-date'>{formatDateTime(dataPost?.user.createdAt)}</p>
+                <p className='home_wrapper-date'>{formatDateTime(dataPost?.user?.createdAt)}</p>
                 <p className='home_wrapper-auth'>
                   <span className='home_wrapper-auth--container'>
                     <img alt='hinh_anh' src={IconAuthor} />
-                    {`Tác giả: ${dataPost?.user.lastName} ${dataPost?.user.firstName}`}
+                    {`Tác giả: ${dataPost?.user?.lastName} ${dataPost?.user?.firstName}`}
                   </span>
                 </p>
                 <Link to={`/write/${id}`}>edit</Link>

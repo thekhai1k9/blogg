@@ -17,7 +17,7 @@ const postApi = {
     return axiosClient.get(url, id)
   },
   //Create post
-  createPost: (params: object) => {
+  createPost: (params: any) => {
     const url = `/create-post`
     return axiosClient.post(url, params)
   },

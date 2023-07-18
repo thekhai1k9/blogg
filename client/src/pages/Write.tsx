@@ -30,7 +30,6 @@ const Write: React.FC = () => {
         setContent(content)
         setDesc(desc)
         setTypePost(type_post)
-        setGetImage(image)
       } catch (error) {
         console.error('Lỗi khi lấy danh sách bài post:', error)
       }

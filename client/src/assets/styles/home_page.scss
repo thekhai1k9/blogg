@@ -223,6 +223,8 @@
       flex-direction: column;
       gap: 150px;
       .home_wrapper_box {
+        min-height: 365px;
+        max-height: 365px;
         .home_wrapper_box--big {
           padding: 9px;
           border-radius: 12px;
@@ -563,7 +565,8 @@
         }
         .home_wrapper-detail-image {
           img {
-            width: 100px;
+            width: 200px;
+            height: 100px;
           }
         }
         .home_wrapper-auth-social {

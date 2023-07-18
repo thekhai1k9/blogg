@@ -47,7 +47,11 @@ const Home: React.FC = () => {
                     <div className='home_wrapper_box'>
                       <div className='home_wrapper_box--big'>
                         <Link className='the_link' to={`/post/${item.id}`}>
-                          <img alt='hinh_anh' src={item.image} className='home_wrapper_box-img' />
+                          <img
+                            alt='hinh_anh'
+                            src={`http://localhost:6969/${item.image}`}
+                            className='home_wrapper_box-img'
+                          />
                         </Link>
                         <h3 className='home_wrapper_box-title'>
                           <Link to={`/post/${item.id}`} className='the_link'>

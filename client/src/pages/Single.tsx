@@ -98,7 +98,7 @@ const Single: React.FC = () => {
                 </p>
                 <Link to={`/write/${id}`}>edit</Link>
                 <div className='home_wrapper-detail-image'>
-                  <img alt='hinh_anh' src={`${dataPost.post.image}`} />
+                  <img alt='hinh_anh' src={`http://localhost:6969/${dataPost.post.image}`} />
                 </div>
                 <ul className='home_wrapper-auth-social'>
                   <li>Like</li>

@@ -83,10 +83,24 @@ const Write: React.FC = () => {
     <div className='write_wrapper'>
       <div className='write_wrapper-content'>
         <div className='write_wrapper-editer'>
-          <ReactQuill className='editor' theme='snow' value={title} onChange={setTitle} modules={modules} />
+          {/* <ReactQuill className='editor' theme='snow' value={title} onChange={setTitle} modules={modules} /> */}
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='Large text'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </div>
         <div className='write_wrapper-editer'>
-          <ReactQuill className='editor' theme='snow' value={desc} onChange={setDesc} modules={modules} />
+          {/* <ReactQuill className='editor' theme='snow' value={desc} onChange={setDesc} modules={modules} /> */}
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='Large text'
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
         </div>
         <div className='write_wrapper-editer'>
           <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} modules={modules} />

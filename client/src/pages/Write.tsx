@@ -87,7 +87,7 @@ const Write: React.FC = () => {
           <Form.Control
             size='lg'
             type='text'
-            placeholder='Large text'
+            placeholder='Nhập tiêu đề bài viết'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -97,7 +97,7 @@ const Write: React.FC = () => {
           <Form.Control
             size='lg'
             type='text'
-            placeholder='Large text'
+            placeholder='Nhập mô tả bài viết'
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />

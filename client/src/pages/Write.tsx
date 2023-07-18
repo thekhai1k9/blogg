@@ -25,7 +25,7 @@ const Write: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
-        const { title, content, desc, type_post, image } = response.data.data.post
+        const { title, content, desc, type_post } = response.data.data.post
         setTitle(title)
         setContent(content)
         setDesc(desc)

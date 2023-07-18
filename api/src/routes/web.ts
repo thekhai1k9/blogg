@@ -25,7 +25,7 @@ const initWebRoutes = (app: any) => {
     router.get('/chi-tiet-post/:id', getPostById)
     router.post('/create-post', upload.single('image'),  CreatePost)
     router.delete('/delete-post/:id', DeletePost)
-    router.put('/update-post/:id', UpdatePost)
+    router.put('/update-post/:id',upload.single('image'),  UpdatePost)
 
 
     router.get('/user', userController)

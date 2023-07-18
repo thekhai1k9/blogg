@@ -18,8 +18,6 @@ const Write: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
   const [typePost, setTypePost] = useState<string>('')
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [getImage, setGetImage] = useState<string | any>()
   const [file, setFile] = useState<File | any>()
   const [previewImage, setPreviewImage] = useState<string | undefined>(undefined)
 
@@ -54,7 +52,7 @@ const Write: React.FC = () => {
       formData.append('date', '2023-07-04 14:19:56') // Thêm tệp hình ảnh vào formData
 
       if (isEditMode) {
-        await axios.post(`http://localhost:6969/api/update-post/${id}`, formData)
+        await axios.put(`http://localhost:6969/api/update-post/${id}`, formData)
         navigate('/')
       } else {
         await axios.post('http://localhost:6969/api/create-post', formData)

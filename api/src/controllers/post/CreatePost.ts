@@ -8,7 +8,7 @@ const CreatePost = async (req: Request, res: Response) => {
   // Cấu hình middleware tải lên của multer
   try {
     const { title, user_id, desc, content, type_post, date, image } = req.body
-    if (req.body.image) {
+    if (req.file) {
       const post = await Post.create({
         user_id,
         title,

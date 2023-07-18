@@ -12,6 +12,10 @@ import CommentById from "../controllers/comment/CommentById"
 import DeleteComment from "../controllers/comment/DeleteComment"
 import UpdateComment from "../controllers/comment/UpdateComment"
 import CreateComment from "../controllers/comment/CreateComment"
+import multer, { Multer } from "multer"
+import { storage } from "../middleware/Uploadfile"
+
+const upload: Multer = multer({ storage: storage })
 
 let router = express.Router()
 
@@ -19,7 +23,7 @@ const initWebRoutes = (app: any) => {
     // CRUD post
     router.get('/danh-sach-post', GetPosts)
     router.get('/chi-tiet-post/:id', getPostById)
-    router.post('/create-post', CreatePost)
+    router.post('/create-post', upload.single('image'),  CreatePost)
     router.delete('/delete-post/:id', DeletePost)
     router.put('/update-post/:id', UpdatePost)
 

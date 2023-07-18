@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import Form from 'react-bootstrap/Form'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import postApi from '../api/post/postApi'
 import Button from '../components/Button'
-import Form from 'react-bootstrap/Form'
-import Dropzone from 'react-dropzone'
 import { toolbarOptions } from '../utils/EditorModule'
 
 const Write: React.FC = () => {
@@ -18,19 +17,16 @@ const Write: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const [desc, setDesc] = useState<string>('')
   const [typePost, setTypePost] = useState<string>('')
-  const [image, setImage] = useState<File | null>(null)
-  const [imageURL, setImageURL] = useState<string>('')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
-        const { title, content, desc, type_post, image } = response.data.data.post
+        const { title, content, desc, type_post } = response.data.data.post
         setTitle(title)
         setContent(content)
         setDesc(desc)
         setTypePost(type_post)
-        setImageURL(image)
         // setImage(image)
       } catch (error) {
         console.error('Lỗi khi lấy danh sách bài post:', error)
@@ -50,7 +46,6 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: image ? URL.createObjectURL(image) : imageURL, // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
           user_id: 1
         }
         await postApi.updatePosts(updatedData, id)
@@ -66,7 +61,6 @@ const Write: React.FC = () => {
           content: content,
           desc: desc,
           type_post: typePost,
-          image: image ? URL.createObjectURL(image) : '', // Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
           user_id: 1,
           date: ''
         }
@@ -75,12 +69,6 @@ const Write: React.FC = () => {
       } catch (error) {
         console.error('Lỗi khi tạo mới bài viết:', error)
       }
-    }
-  }
-
-  const handleImageUpload = (files: File[]) => {
-    if (files && files.length > 0) {
-      setImage(files[0])
     }
   }
 
@@ -119,18 +107,7 @@ const Write: React.FC = () => {
           <span>
             <b>Visibility: </b> Public
           </span>
-          <Dropzone onDrop={handleImageUpload}>
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps()} className='dropzone'>
-                <input {...getInputProps()} />
-                {image ? (
-                  <img src={URL.createObjectURL(image)} alt='Uploaded' className='uploaded-image' />
-                ) : (
-                  <p>Drag and drop an image here or click to select a file</p>
-                )}
-              </div>
-            )}
-          </Dropzone>
+          <input type='file' name='image' />
           <div className='write_wrapper-item--button'>
             <div onClick={handleSubmit}>{isEditMode ? <Button>Update Post</Button> : <Button>Create Post</Button>}</div>
           </div>

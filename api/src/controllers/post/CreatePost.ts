@@ -9,13 +9,12 @@ const CreatePost = async (req: Request, res: Response) => {
   try {
     const { title, user_id, desc, content, type_post, date } = req.body
     console.log(req.file)
-    
     if (req.file) {
       const post = await Post.create({
         user_id,
         title,
         desc,
-        image: req.file?.path,
+        image: req.file?.path.replace(/\\/g, '/'),
         content,
         type_post,
         date

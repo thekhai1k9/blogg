@@ -18,7 +18,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Cấp quyền truy cập
-app.use('/uploads', express.static('uploads'))
+app.use('/src/uploads', express.static('src/uploads'))
 
 // Connect Routes
 initWebRoutes(app)

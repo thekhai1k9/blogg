@@ -1,12 +1,13 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
+import toast from 'react-hot-toast'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import postApi from '../api/post/postApi'
 import Button from '../components/Button'
 import { toolbarOptions } from '../utils/EditorModule'
-import axios from 'axios'
 
 const Write: React.FC = () => {
   const navigate = useNavigate()
@@ -25,11 +26,12 @@ const Write: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
-        const { title, content, desc, type_post } = response.data.data.post
+        const { title, content, desc, type_post, image } = response.data.data.post
         setTitle(title)
         setContent(content)
         setDesc(desc)
         setTypePost(type_post)
+        setPreviewImage(`http://localhost:6969/${image}`)
       } catch (error) {
         console.error('Lỗi khi lấy danh sách bài post:', error)
       }
@@ -52,6 +54,7 @@ const Write: React.FC = () => {
 
       if (isEditMode) {
         await axios.put(`http://localhost:6969/api/update-post/${id}`, formData)
+        toast.success('Bài viết đã được cập nhật thành công')
         navigate('/')
       } else {
         await axios.post('http://localhost:6969/api/create-post', formData)
@@ -59,6 +62,7 @@ const Write: React.FC = () => {
       }
     } catch (error) {
       console.error('Lỗi khi tạo mới bài viết:', error)
+      toast.error('Có lỗi xảy ra khi tạo mới bài viết')
     }
   }
 
@@ -108,7 +112,7 @@ const Write: React.FC = () => {
           <div>
             <input type='file' name='image' onChange={handleImageChange} />
             {previewImage && (
-              <img src={previewImage} alt='Preview' style={{ width: 50, height: 50, marginTop: '10px' }} />
+              <img src={previewImage} alt='Preview' style={{ width: 170, height: 70, marginTop: '10px' }} />
             )}
           </div>
           <div className='write_wrapper-item--button'>

@@ -3,7 +3,7 @@ import { Op } from 'sequelize'
 import Post from "../../models/post"
 
 const  GetPosts =  async (req: Request, res: Response) => {
-    const { filter, page, limit } = req.body
+    const { filter, page, limit } = req.query
     try {
         
         let filterConditions = {}
@@ -18,7 +18,7 @@ const  GetPosts =  async (req: Request, res: Response) => {
         }
         
         // Số trang hiện tại và số bài post trên mỗi trang
-        const currentPage = parseInt(page as string, 5) || 1
+        const currentPage = parseInt(page as string, 10) || 1
         const postsPerPage = parseInt(limit as string, 10) || 10
 
         // Tính toán offset và số lượng bài post trên mỗi trang

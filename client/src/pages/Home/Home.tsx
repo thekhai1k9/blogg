@@ -19,21 +19,47 @@ interface PostProps {
 
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<PostProps[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [totalPages, setTotalPages] = useState<number | any>(0)
+  console.log(totalPages)
+
+  const postsPerPage = 6
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await postApi.getPosts({
           filter: '',
-          page: 1,
-          limit: 10
+          page: currentPage,
+          limit: postsPerPage
         })
         setPosts(response.data.posts)
+        const totalCount = response.data.total // Lấy số lượng bài post từ response
+        const totalPages = Math.ceil(totalCount / postsPerPage)
+        setTotalPages(totalPages) // Lưu vào state totalPages
       } catch (error) {
         console.error('Lỗi khi lấy danh sách bài post:', error)
       }
     }
     fetchData()
-  }, [])
+  }, [currentPage])
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => {
+      const newPage = Math.max(prevPage - 1, 1)
+      console.log('Previous page:', newPage)
+      return newPage
+    })
+  }
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => {
+      const newPage = Math.min(prevPage + 1, totalPages)
+      console.log('Next page:', newPage)
+      return newPage
+    })
+  }
 
   return (
     <Wrapper>
@@ -75,12 +101,13 @@ const Home: React.FC = () => {
             <Row>
               <div className='home_wrapper-paginate'>
                 <ul className='home_wrapper-paginate-list'>
-                  <li>Previous</li>
-                  <li>1</li>
-                  <li>2</li>
-                  <li>3</li>
-                  <li>4</li>
-                  <li>Nexts</li>
+                  <li onClick={handlePreviousPage}>Previous</li>
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <li key={index + 1} onClick={() => setCurrentPage(index + 1)}>
+                      {index + 1}
+                    </li>
+                  ))}
+                  <li onClick={handleNextPage}>Next</li>
                 </ul>
               </div>
             </Row>

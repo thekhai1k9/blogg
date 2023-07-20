@@ -61,6 +61,11 @@ const Home: React.FC = () => {
     })
   }
 
+  // Update view count post
+  const handlePostClick = async (postId: number) => {
+    await postApi.updateViewPost(postId)
+  }
+
   return (
     <Wrapper>
       <div className='home_wrapper'>
@@ -77,6 +82,7 @@ const Home: React.FC = () => {
                             alt='hinh_anh'
                             src={`http://localhost:6969/${item.image}`}
                             className='home_wrapper_box-img'
+                            onClick={() => handlePostClick(item.id)}
                           />
                         </Link>
                         <h3 className='home_wrapper_box-title'>

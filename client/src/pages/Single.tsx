@@ -81,6 +81,9 @@ const Single: React.FC = () => {
     setShowAllComments(!showAllComments)
   }
 
+  {
+    console.log(currentUser?.currentUser)
+  }
   return (
     <Wrapper>
       {dataPost ? (
@@ -96,7 +99,7 @@ const Single: React.FC = () => {
                     {`Tác giả: ${dataPost?.user?.lastName} ${dataPost?.user?.firstName}`}
                   </span>
                 </p>
-                <Link to={`/write/${id}`}>edit</Link>
+                {currentUser?.currentUser?.isAdmin === '1' && <Link to={`/write/${id}`}>Edit</Link>}
                 <div className='home_wrapper-detail-image'>
                   <img alt='hinh_anh' src={`http://localhost:6969/${dataPost.post.image}`} />
                 </div>

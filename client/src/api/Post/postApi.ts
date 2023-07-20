@@ -6,10 +6,20 @@ const postApi = {
     const url = '/danh-sach-post'
     return axiosClient.get(url, { params })
   },
+  // get danh sách top 5 bài post có view cao nhất
+  getTop5Posts: () => {
+    const url = '/top-5-bai-post'
+    return axiosClient.get(url)
+  },
   //Update post
   updatePosts: (params: object, id: any) => {
     const url = `/update-post/${id}`
     return axiosClient.put(url, params)
+  },
+  //Update view post
+  updateViewPost: (id: any) => {
+    const url = `/updateViewCount/${id}`
+    return axiosClient.put(url)
   },
   //Chi tiết post
   detailPost: (id: object) => {

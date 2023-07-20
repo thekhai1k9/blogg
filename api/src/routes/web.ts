@@ -14,6 +14,8 @@ import UpdateComment from "../controllers/comment/UpdateComment"
 import CreateComment from "../controllers/comment/CreateComment"
 import multer, { Multer } from "multer"
 import { storage } from "../middleware/Uploadfile"
+import updateViewCount from "../controllers/post/updateViewCount"
+import getTop5PostsByViews from "../controllers/post/getTop5PostsByViews"
 
 const upload: Multer = multer({ storage: storage })
 
@@ -26,6 +28,10 @@ const initWebRoutes = (app: any) => {
     router.post('/create-post', upload.single('image'),  CreatePost)
     router.delete('/delete-post/:id', DeletePost)
     router.put('/update-post/:id',upload.single('image'),  UpdatePost)
+    // Update view
+    router.put('/updateViewCount/:id', updateViewCount)
+    // Top 5 post view
+    router.get('/top-5-bai-post', getTop5PostsByViews)
 
 
     router.get('/user', userController)

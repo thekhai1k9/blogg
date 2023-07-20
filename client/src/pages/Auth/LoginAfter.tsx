@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
-import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Wrapper } from '../../pages/styles'
-import SocialPage from '../../components/SocialPage'
-import PostTrending from '../../components/PostTrending'
 
 const LoginAfter: React.FC = () => {
   const navigate = useNavigate()
@@ -40,8 +38,6 @@ const LoginAfter: React.FC = () => {
             </p>
           )}
         </div>
-        <SocialPage />
-        <PostTrending />
       </div>
     </Wrapper>
   )

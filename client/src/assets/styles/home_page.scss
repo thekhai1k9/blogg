@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,200;1,400;1,500&family=Roboto:wght@300;400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .app {
@@ -223,8 +225,6 @@
       flex-direction: column;
       gap: 150px;
       .home_wrapper_box {
-        min-height: 365px;
-        max-height: 365px;
         .home_wrapper_box--big {
           padding: 9px;
           border-radius: 12px;
@@ -399,58 +399,6 @@
             }
           }
         }
-        .home_wrapper_box-social {
-          background-color: #ffffff;
-          margin-bottom: 12px;
-          .home_wrapper_box-social-title {
-            color: #000;
-            font-size: 27px;
-            font-family: 'UTMNeutra';
-            margin-top: 25px;
-            text-align: center;
-          }
-          .home_wrapper_box-social-icon {
-            text-align: center;
-            .the_link {
-              display: inline-block;
-              width: 23%;
-              text-align: center;
-              border-right: 1px solid #ddd;
-              cursor: pointer;
-              img {
-                width: 40px;
-              }
-            }
-          }
-          .home_wrapper_box-social-share {
-            box-sizing: border-box;
-          }
-        }
-        .home_wrapper_box-trending {
-          background: #ffffff;
-          .home_wrapper_box-trending-content {
-            border-radius: 12px 0px 12px 12px;
-            background: #fff;
-            padding: 25px 15px;
-            .home_wrapper_box-trending-list {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-              .home_wrapper_box-trending-item {
-                list-style: none;
-                margin-top: 15px;
-                .the_link {
-                  font-family: 'Roboto';
-                  font-size: 14px;
-                  font-weight: bold;
-                  line-height: normal;
-                  display: block;
-                  text-decoration: none;
-                }
-              }
-            }
-          }
-        }
         .home_wrapper_box-login-after {
           background: #ffffff;
           padding-bottom: 4px;
@@ -499,6 +447,7 @@
             }
           }
         }
+        
       }
       .home_wrapper_slider {
         .home_wrapper_slider-box {
@@ -750,6 +699,65 @@
             }
             .home_wrapper-ui-comment-cmt {
               font-size: 14px;
+            }
+          }
+        }
+      }
+      .home_wrapper_box-social {
+        background-color: #ffffff;
+        margin-top: 20px;
+        border-radius: 12px;
+        padding: 8px 0;
+
+        .home_wrapper_box-social-title {
+          color: #000;
+          font-size: 27px;
+          font-family: 'UTMNeutra';
+          margin-top: 25px;
+          text-align: center;
+          font-weight: 600;
+        }
+        .home_wrapper_box-social-icon {
+          text-align: center;
+          .the_link {
+            display: inline-block;
+            width: 23%;
+            text-align: center;
+            border-right: 1px solid #ddd;
+            cursor: pointer;
+            img {
+              width: 40px;
+            }
+          }
+        }
+        .home_wrapper_box-social-share {
+          box-sizing: border-box;
+        }
+      }
+      .home_wrapper_box-trending {
+        background: #ffffff;
+        padding: 12px 0;
+        border-radius: 12px;
+        margin-top: 20px;
+        .home_wrapper_box-trending-content {
+          border-radius: 12px 0px 12px 12px;
+          background: #fff;
+          padding: 25px 15px;
+          .home_wrapper_box-trending-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            .home_wrapper_box-trending-item {
+              list-style: none;
+              margin-top: 15px;
+              .the_link {
+                font-family: 'Roboto';
+                font-size: 14px;
+                font-weight: bold;
+                line-height: normal;
+                display: block;
+                text-decoration: none;
+              }
             }
           }
         }

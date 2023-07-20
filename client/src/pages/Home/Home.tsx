@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { Wrapper } from '../../pages/styles'
 import { Link } from 'react-router-dom'
-import Menu from '../../components/Menu'
 import postApi from '../../api/post/postApi'
-import { formatDateTime } from '../../helper/function_format'
 import Carousel from '../../components/Carousel'
+import Menu from '../../components/Menu'
 import SocialFooter from '../../components/SocialFooter'
+import SocialPage from '../../components/SocialPage'
+import { formatDateTime } from '../../helper/function_format'
+import { Wrapper } from '../../pages/styles'
+import PostTrending from '../../components/PostTrending'
 
 interface PostProps {
   id: number
   title: string
   desc: string
   image: string
-  date: any
+  createdAt: any
 }
 
 const Home: React.FC = () => {
@@ -91,7 +93,7 @@ const Home: React.FC = () => {
                           </Link>
                         </h3>
                         <p className='home_wrapper_box-author'>
-                          <small>{formatDateTime(item.date)}</small>
+                          <small>{formatDateTime(item.createdAt)}</small>
                         </p>
                         <p className='home_wrapper_box-content'>{item.desc}</p>
                       </div>
@@ -123,6 +125,8 @@ const Home: React.FC = () => {
           </Col>
           <Col xs={4} style={{ paddingTop: 20 }}>
             <Menu />
+            <SocialPage />
+            <PostTrending />
           </Col>
         </Row>
       </div>

@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Link, useNavigate } from 'react-router-dom'
 import authApi from '../../api/auth/authApi'
-import SocialPage from '../../components/SocialPage'
-import PostTrending from '../../components/PostTrending'
+import { AuthContext, AuthContextProps } from '../../context/authContext'
 
 export interface LoginForm {
   userName: string
@@ -112,8 +110,6 @@ const LoginBefore: React.FC = () => {
           {/* {error && <p>Login failed. Please try again.</p>} */}
         </form>
       </aside>
-      <SocialPage />
-      <PostTrending />
     </div>
   )
 }

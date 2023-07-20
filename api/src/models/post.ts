@@ -2,25 +2,25 @@ import { BuildOptions, DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/connectDB';
 
 export interface PostAttributes {
-  id?: string,
+  id?: number,
   user_id: string,
   title: string,
   desc: string,
-  date?: Date,
   image: string,
   content: string,
-  type_post: string
+  type_post: string,
+  view?: number | null
 }
 
 class Post extends Model<PostAttributes> implements PostAttributes {
-  public id!: string;
+  public id!: number;
   public user_id!: string;
   public title!: string;
   public desc!: string;
-  public date!: Date;
   public image!: string;
   public content!: string;
-  public type_post!: string
+  public type_post!: string;
+  public view?: number;
 
   static associate(models: any) {
     // Định nghĩa các mối quan hệ tại đây
@@ -59,10 +59,6 @@ Post.init(
       allowNull: false,
       unique: true,
     },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
     image: {
       type: DataTypes.STRING,
     },
@@ -71,13 +67,17 @@ Post.init(
     },
     type_post: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
+    },
+    view: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'Post',
+    modelName: 'Post'
   }
-);
+)
 
-export default Post;
+export default Post

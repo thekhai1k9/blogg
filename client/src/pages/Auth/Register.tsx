@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
 import authApi from '../../api/auth/authApi'
 import { Wrapper } from '../../pages/styles'
+import toast from 'react-hot-toast'
 
 interface RegisterForm {
   firstName: string
@@ -32,6 +33,7 @@ const Register: React.FC = () => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
   }
+  console.log(formValues)
 
   const ui_avatar_url = `https://ui-avatars.com/api/?name=${formValues.firstName} ${formValues.lastName}&size=64&background=random&rounded=true`
 
@@ -47,9 +49,11 @@ const Register: React.FC = () => {
         phone: formValues.phone,
         image: ui_avatar_url
       })
+      toast.success('Thêm mới người dùng thành công.')
       navigate('/login')
     } catch (error: unknown) {
       setErr(true)
+      toast.error('Có lỗi xảy ra tạo mới người dùng.')
       // Handle error or display error message
     }
   }

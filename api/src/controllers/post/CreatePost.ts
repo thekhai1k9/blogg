@@ -7,7 +7,7 @@ const upload: Multer = multer({ storage: storage })
 const CreatePost = async (req: Request, res: Response) => {
   // Cấu hình middleware tải lên của multer
   try {
-    const { title, user_id, desc, content, type_post, date } = req.body
+    const { title, user_id, desc, content, type_post, view } = req.body
     console.log(req.file)
     if (req.file) {
       const post = await Post.create({
@@ -17,7 +17,7 @@ const CreatePost = async (req: Request, res: Response) => {
         image: req.file?.path.replace(/\\/g, '/'),
         content,
         type_post,
-        date
+        view
       })
       return res.status(200).json({
         data: post,

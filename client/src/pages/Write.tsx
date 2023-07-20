@@ -50,7 +50,7 @@ const Write: React.FC = () => {
       formData.append('type_post', typePost)
       formData.append('user_id', '1')
       formData.append('image', file) // Thêm tệp hình ảnh vào formData
-      formData.append('date', '2023-07-04 14:19:56') // Thêm tệp hình ảnh vào formData
+      formData.append('view', '0')
 
       if (isEditMode) {
         await axios.put(`http://localhost:6969/api/update-post/${id}`, formData)
@@ -58,11 +58,12 @@ const Write: React.FC = () => {
         navigate('/')
       } else {
         await axios.post('http://localhost:6969/api/create-post', formData)
+        toast.success('Bài viết đã được tạo mới thành công')
         navigate('/')
       }
     } catch (error) {
       console.error('Lỗi khi tạo mới bài viết:', error)
-      toast.error('Có lỗi xảy ra khi tạo mới bài viết')
+      toast.error('Có lỗi xảy ra với bài viết của bạn')
     }
   }
 

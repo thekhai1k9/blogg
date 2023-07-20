@@ -15,12 +15,15 @@ const app: Application = express()
 
 // Enable CORS
 app.use(cors())
-
-app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// Cấp quyền truy cập
+app.use('/src/uploads', express.static('src/uploads'))
 
 // Connect Routes
 initWebRoutes(app)
+
+app.use(express.static('uploads'))
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(new createHttpError.NotFound())

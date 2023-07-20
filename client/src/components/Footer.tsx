@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className='footer_wrapper'>
       <img src={Logo} alt='logo' />
       <span>
-        Made with and <b>Blog</b>.
+        Made with and <b>Blog</b>
       </span>
     </footer>
   )

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import authApi from '../api/Auth/authApi'
+import authApi from '../api/auth/authApi'
 
 export interface AuthContextProps {
   currentUser: any | null

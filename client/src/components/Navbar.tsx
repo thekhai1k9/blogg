@@ -47,11 +47,13 @@ const Navbar: React.FC = () => {
           ) : (
             <Link to='/login'>Login</Link>
           )}
+          {/* {currentUser?.currentUser?.isAdmin === '1' && ( */}
           <span className='navbar_links-write'>
             <Link className='link' to='/write'>
               Write
             </Link>
           </span>
+          {/* )} */}
         </div>
       </div>
     </div>

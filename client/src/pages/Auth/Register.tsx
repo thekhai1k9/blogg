@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import authApi from '../../api/Auth/authApi'
+import authApi from '../../api/auth/authApi'
 import { Wrapper } from '../../pages/styles'
 
 interface RegisterForm {
@@ -11,6 +11,7 @@ interface RegisterForm {
   userName: string
   password: string
   phone?: string
+  image: string
 }
 
 const Register: React.FC = () => {
@@ -20,7 +21,8 @@ const Register: React.FC = () => {
     email: '',
     userName: '',
     password: '',
-    phone: ''
+    phone: '',
+    image: ''
   })
 
   const navigate = useNavigate()
@@ -31,6 +33,8 @@ const Register: React.FC = () => {
     setFormValues({ ...formValues, [name]: value })
   }
 
+  const ui_avatar_url = `https://ui-avatars.com/api/?name=${formValues.firstName} ${formValues.lastName}&size=64&background=random&rounded=true`
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -40,7 +44,8 @@ const Register: React.FC = () => {
         email: formValues.email,
         userName: formValues.userName,
         password: formValues.password,
-        phone: formValues.phone
+        phone: formValues.phone,
+        image: ui_avatar_url
       })
       navigate('/login')
     } catch (error: unknown) {

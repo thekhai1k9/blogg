@@ -32,7 +32,9 @@ const LoginAfter: React.FC = () => {
                 <li>Thay đổi mật khẩu</li>
                 <li>Xóa tài khoản</li>
                 <li>
-                  <Link to='/edit-thong-tin'>Thay đổi thông tin</Link>
+                  <Link to='/edit-thong-tin' className='the_link'>
+                    Thay đổi thông tin
+                  </Link>
                 </li>
               </ul>
             </p>

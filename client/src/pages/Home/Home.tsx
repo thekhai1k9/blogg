@@ -68,6 +68,20 @@ const Home: React.FC = () => {
     await postApi.updateViewPost(postId)
   }
 
+  // Fetch 5 posst
+  const [top5Posts, setTop5Posts] = useState<any>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await postApi.getTop5Posts()
+        setTop5Posts(response.data.data)
+      } catch (error) {
+        console.error('Lỗi khi lấy danh sách bài post:', error)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <Wrapper>
       <div className='home_wrapper'>
@@ -103,7 +117,7 @@ const Home: React.FC = () => {
             </Row>
             <Row>
               <div className='home_wrapper_slider'>
-                <Carousel />
+                <Carousel top5Posts={top5Posts} />
               </div>
             </Row>
             <Row>
@@ -126,7 +140,7 @@ const Home: React.FC = () => {
           <Col xs={4} style={{ paddingTop: 20 }}>
             <Menu />
             <SocialPage />
-            <PostTrending />
+            <PostTrending top5Posts={top5Posts} />
           </Col>
         </Row>
       </div>

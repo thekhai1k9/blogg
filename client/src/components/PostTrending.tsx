@@ -1,8 +1,13 @@
 import { Wrapper } from '../pages/styles'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { formatDateTime } from '../helper/function_format'
 
-const PostTrending: React.FC = () => {
+interface Top5PostProps {
+  top5Posts: any
+}
+
+const PostTrending: React.FC<Top5PostProps> = ({ top5Posts }) => {
   return (
     <Wrapper>
       <div className='home_wrapper_box'>
@@ -16,30 +21,15 @@ const PostTrending: React.FC = () => {
               />
             </Link>
             <ul className='home_wrapper_box-trending-list'>
-              <li className='home_wrapper_box-trending-item'>
-                <Link to='/' className='the_link'>
-                  Nỗi buồn của người trưởng thành
-                  <p>2023-06-03 02:50:00</p>
-                </Link>
-              </li>
-              <li className='home_wrapper_box-trending-item'>
-                <Link to='/' className='the_link'>
-                  Nỗi buồn của người trưởng thành
-                  <p>2023-06-03 02:50:00</p>
-                </Link>
-              </li>
-              <li className='home_wrapper_box-trending-item'>
-                <Link to='/' className='the_link'>
-                  Nỗi buồn của người trưởng thành
-                  <p>2023-06-03 02:50:00</p>
-                </Link>
-              </li>
-              <li className='home_wrapper_box-trending-item'>
-                <Link to='/' className='the_link'>
-                  Nỗi buồn của người trưởng thành
-                  <p>2023-06-03 02:50:00</p>
-                </Link>
-              </li>
+              {top5Posts &&
+                top5Posts.map((item: any, index: number) => (
+                  <li className='home_wrapper_box-trending-item' key={index}>
+                    <Link to='/' className='the_link'>
+                      <span>{item.title}</span>
+                      <p>{formatDateTime(item.createdAt)}</p>
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
         </aside>

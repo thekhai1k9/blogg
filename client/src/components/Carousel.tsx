@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Carousel from 'react-bootstrap/Carousel'
-import postApi from '../../src/api/post/postApi'
 import { Link } from 'react-router-dom'
 
-const Footer: React.FC = () => {
-  const [top5Posts, setTop5Posts] = useState<any>([])
+interface Top5PostProps {
+  top5Posts: any
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await postApi.getTop5Posts()
-        setTop5Posts(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bài post:', error)
-      }
-    }
-    fetchData()
-  }, [])
-
+const Footer: React.FC<Top5PostProps> = ({ top5Posts }) => {
   return (
     <div className='home_wrapper_slider-box'>
       <h3>Bài viết hay nhất</h3>

@@ -1,7 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
-import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton } from 'react-share'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton
+} from 'react-share'
 import postApi from '../api/post/postApi'
 import IconAuthor from '../assets/images/author.svg'
 import IconSubmit from '../assets/images/submit.svg'
@@ -135,6 +146,33 @@ const Single: React.FC = () => {
                     >
                       <LinkedinIcon size={32} round />
                     </LinkedinShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <WhatsappShareButton
+                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <WhatsappIcon size={32} round />
+                    </WhatsappShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <TwitterShareButton
+                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <TelegramShareButton
+                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <TelegramIcon size={32} round />
+                    </TelegramShareButton>
                   </li>
                 </ul>
                 <div className='home_wrapper-detail-desc'>

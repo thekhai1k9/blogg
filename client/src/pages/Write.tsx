@@ -103,7 +103,7 @@ const Write: React.FC = () => {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
-        <div className='write_wrapper-editer'>
+        <div className='write_wrapper-editer-quill'>
           <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} modules={modules} />
         </div>
         <Form.Select
@@ -120,11 +120,7 @@ const Write: React.FC = () => {
       </div>
       <div className='write_wrapper-menu'>
         <div className='write_wrapper-item'>
-          <h1>Publish</h1>
-          <span>
-            <b>Visibility: </b> Public
-          </span>
-          <div>
+          <div className='write_wrapper-upload'>
             <input type='file' name='image' onChange={handleImageChange} />
             {previewImage && (
               <img src={previewImage} alt='Preview' style={{ width: 170, height: 70, marginTop: '10px' }} />

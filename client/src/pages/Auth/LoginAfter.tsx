@@ -36,6 +36,13 @@ const LoginAfter: React.FC = () => {
                     Thay đổi thông tin
                   </Link>
                 </li>
+                {currentUser?.currentUser?.isAdmin === '1' && (
+                  <li>
+                    <Link to='/write' className='the_link'>
+                      Viết bài
+                    </Link>
+                  </li>
+                )}
               </ul>
             </p>
           )}

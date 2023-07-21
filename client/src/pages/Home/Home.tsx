@@ -24,27 +24,22 @@ const Home: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPages, setTotalPages] = useState<number | any>(0)
-  console.log(totalPages)
 
   const postsPerPage = 6
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await postApi.getPosts({
-          title: '',
-          desc: '',
-          type_post: '',
-          page: currentPage,
-          limit: postsPerPage
-        })
-        setPosts(response.data.posts)
-        const totalCount = response.data.total // Lấy số lượng bài post từ response
-        const totalPages = Math.ceil(totalCount / postsPerPage)
-        setTotalPages(totalPages) // Lưu vào state totalPages
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bài post:', error)
-      }
+      const response = await postApi.getPosts({
+        title: '',
+        desc: '',
+        type_post: '',
+        page: currentPage,
+        limit: postsPerPage
+      })
+      setPosts(response.data.posts)
+      const totalCount = response.data.total // Lấy số lượng bài post từ response
+      const totalPages = Math.ceil(totalCount / postsPerPage)
+      setTotalPages(totalPages) // Lưu vào state totalPages
     }
     fetchData()
   }, [currentPage])
@@ -72,12 +67,8 @@ const Home: React.FC = () => {
   const [top5Posts, setTop5Posts] = useState<any>([])
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await postApi.getTop5Posts()
-        setTop5Posts(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bài post:', error)
-      }
+      const response = await postApi.getTop5Posts()
+      setTop5Posts(response.data.data)
     }
     fetchData()
   }, [])

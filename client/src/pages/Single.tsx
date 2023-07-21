@@ -46,24 +46,16 @@ const Single: React.FC = () => {
 
   useEffect(() => {
     const fetchGetDetail = async () => {
-      try {
-        const response = await postApi.detailPost(id)
-        setDataPost(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy chi tiết bài post:', error)
-      }
+      const response = await postApi.detailPost(id)
+      setDataPost(response.data.data)
     }
     fetchGetDetail()
   }, [id])
 
   useEffect(() => {
     const fetchComments = async () => {
-      try {
-        const response = await postApi.detailCommentPost(id)
-        setComments(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bình luận:', error)
-      }
+      const response = await postApi.detailCommentPost(id)
+      setComments(response.data.data)
     }
     fetchComments()
   }, [id])
@@ -71,19 +63,15 @@ const Single: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (newComment) {
-      try {
-        await postApi.createCommentPost({
-          comment: newComment,
-          post_id: Number(id),
-          user_id: currentUser?.currentUser?.id
-        })
-        setNewComment('')
-        // Sau khi tạo bình luận mới, cập nhật danh sách bình luận bằng cách gọi lại API lấy danh sách
-        const response = await postApi.detailCommentPost(id)
-        setComments(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi gửi bình luận:', error)
-      }
+      await postApi.createCommentPost({
+        comment: newComment,
+        post_id: Number(id),
+        user_id: currentUser?.currentUser?.id
+      })
+      setNewComment('')
+      // Sau khi tạo bình luận mới, cập nhật danh sách bình luận bằng cách gọi lại API lấy danh sách
+      const response = await postApi.detailCommentPost(id)
+      setComments(response.data.data)
     }
   }
 
@@ -99,12 +87,8 @@ const Single: React.FC = () => {
   const [top5Posts, setTop5Posts] = useState<any>([])
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await postApi.getTop5Posts()
-        setTop5Posts(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bài post:', error)
-      }
+      const response = await postApi.getTop5Posts()
+      setTop5Posts(response.data.data)
     }
     fetchData()
   }, [])

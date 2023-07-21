@@ -12,6 +12,7 @@ const PostTrending: React.FC<Top5PostProps> = ({ top5Posts }) => {
     <Wrapper>
       <div className='home_wrapper_box'>
         <aside className='home_wrapper_box-trending'>
+          <h4 className='home_wrapper_box-trending--title'>Top 5 bài viết</h4>
           <div className='home_wrapper_box-trending-content'>
             <Link to='/' className='the_link'>
               <img

@@ -124,7 +124,7 @@ const Single: React.FC = () => {
                   </li>
                   <li className='home_wrapper-share'>
                     <LinkedinShareButton
-                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      url={`http://localhost:6969/post/${dataPost.id}`}
                       // quote={dataPost.title}
                       // hashtag='#BOFK'
                     >
@@ -133,7 +133,7 @@ const Single: React.FC = () => {
                   </li>
                   <li className='home_wrapper-share'>
                     <WhatsappShareButton
-                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      url={`http://localhost:6969/post/${dataPost.id}`}
                       // quote={dataPost.title}
                       // hashtag='#BOFK'
                     >
@@ -142,7 +142,7 @@ const Single: React.FC = () => {
                   </li>
                   <li className='home_wrapper-share'>
                     <TwitterShareButton
-                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      url={`http://localhost:6969/post/${dataPost.id}`}
                       // quote={dataPost.title}
                       // hashtag='#BOFK'
                     >
@@ -151,7 +151,7 @@ const Single: React.FC = () => {
                   </li>
                   <li className='home_wrapper-share'>
                     <TelegramShareButton
-                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      url={`http://localhost:6969/post/${dataPost.id}`}
                       // quote={dataPost.title}
                       // hashtag='#BOFK'
                     >

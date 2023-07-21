@@ -21,12 +21,13 @@ const Write: React.FC = () => {
   const [typePost, setTypePost] = useState<string>('')
   const [file, setFile] = useState<File | any>()
   const [previewImage, setPreviewImage] = useState<string | undefined>(undefined)
-
+  console.log(previewImage)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
         const { title, content, desc, type_post, image } = response.data.data.post
+        console.log(response.data.data.post)
         setTitle(title)
         setContent(content)
         setDesc(desc)
@@ -49,8 +50,13 @@ const Write: React.FC = () => {
       formData.append('desc', desc)
       formData.append('type_post', typePost)
       formData.append('user_id', '1')
-      formData.append('image', file) // Thêm tệp hình ảnh vào formData
       formData.append('view', '0')
+      // Kiểm tra xem tệp có thay đổi hay không
+      if (file) {
+        formData.append('image', file) // Thêm tệp mới vào formData nếu có tệp mới
+      } else {
+        formData.append('image', previewImage ?? '') // Thêm URL hình ảnh từ API chi tiết nếu không có tệp mới
+      }
 
       if (isEditMode) {
         await axios.put(`http://localhost:6969/api/update-post/${id}`, formData)

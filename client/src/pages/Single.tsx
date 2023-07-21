@@ -158,7 +158,9 @@ const Single: React.FC = () => {
                 </div>
               </div>
               <div className='home_wrapper-ui-comment'>
-                <h5 className='home_wrapper-ui-comment-sum'>2 Comments</h5>
+                <h5 className='home_wrapper-ui-comment-sum'>{`${
+                  comments && comments.length > 0 ? comments.length + 1 : 0
+                } Comments`}</h5>
                 {comments &&
                   comments.slice(0, showAllComments ? comments.length : 5).map((comment: any) => (
                     <div className='home_wrapper-ui-comment-box' key={comment.id}>

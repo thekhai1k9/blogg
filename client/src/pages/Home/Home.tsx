@@ -32,7 +32,9 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await postApi.getPosts({
-          filter: '',
+          title: '',
+          desc: '',
+          type_post: '',
           page: currentPage,
           limit: postsPerPage
         })

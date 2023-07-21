@@ -9,6 +9,8 @@ import Menu from '../components/Menu'
 import { AuthContext } from '../context/authContext'
 import { formatDateTime } from '../helper/function_format'
 import { Wrapper } from './styles'
+import SocialPage from '../components/SocialPage'
+import PostTrending from '../components/PostTrending'
 
 interface dataPostProps {
   id: string
@@ -82,9 +84,20 @@ const Single: React.FC = () => {
     setShowAllComments(!showAllComments)
   }
 
-  {
-    console.log(currentUser?.currentUser)
-  }
+  // Fetch 5 posst
+  const [top5Posts, setTop5Posts] = useState<any>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await postApi.getTop5Posts()
+        setTop5Posts(response.data.data)
+      } catch (error) {
+        console.error('Lỗi khi lấy danh sách bài post:', error)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <Wrapper>
       {dataPost ? (
@@ -200,46 +213,14 @@ const Single: React.FC = () => {
             </Col>
             <Col xs={4}>
               <Menu />
+              <SocialPage />
+              <PostTrending top5Posts={top5Posts} />
             </Col>
           </Row>
         </div>
       ) : (
         <span>Loading......</span>
       )}
-      {/* Hiển thị danh sách bình luận */}
-      {/* <div className='comments-wrapper'>
-        {comments &&
-          comments.slice(0, showAllComments ? comments.length : 5).map((comment: any) => (
-            <div key={comment.id} className='comment'>
-              <div
-                className='comment-user'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-              >
-                <img
-                  style={{ height: 30, width: 30, borderRadius: '50%' }}
-                  src={comment.user.image}
-                  alt='User Avatar'
-                />
-                <div className='comment-info'>
-                  <span>{`${comment.user.lastName} ${comment.user.firstName}`}</span>
-                  <p>{formatDateTime(comment.createdAt)}</p>
-                </div>
-                <div>
-                  <i className='fa-solid fa-ellipsis-vertical'></i>
-                </div>
-              </div>
-              <p>{comment.comment}</p>
-            </div>
-          ))}
-        {comments && comments.length > 5 && (
-          <button onClick={handleToggleComments}>{showAllComments ? 'Hide' : 'Read more'}</button>
-        )}
-      </div> */}
-      {/* Form để người dùng nhập bình luận mới */}
-      {/* <form onSubmit={handleSubmit}>
-        <textarea value={newComment} onChange={handleChange} />
-        <button type='submit'>Submit</button>
-      </form> */}
     </Wrapper>
   )
 }

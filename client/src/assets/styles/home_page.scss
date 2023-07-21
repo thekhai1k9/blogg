@@ -474,6 +474,12 @@
                 opacity: 0.6;
                 display: block;
                 padding: 4px;
+                background-color: #000000;
+                color: #fff;
+                border-radius: 12px;
+                font-size: 12px;
+                text-align: center;
+                transition: display 0.3s;
               }
             }
             img {
@@ -481,14 +487,7 @@
               height: 260px;
             }
             .home_wrapper_slider-box-content {
-              background-color: #000000;
-              color: #fff;
-              border-radius: 12px;
               display: none;
-              transition: display 0.3s;
-              // &.hide {
-              //   display: none;
-              // }
             } 
             h3 {
               margin: 12px;

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { Col, Row } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
+import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton } from 'react-share'
 import postApi from '../api/post/postApi'
+import IconAuthor from '../assets/images/author.svg'
+import IconSubmit from '../assets/images/submit.svg'
+import Menu from '../components/Menu'
 import { AuthContext } from '../context/authContext'
 import { formatDateTime } from '../helper/function_format'
 import { Wrapper } from './styles'
-import { Col, Row } from 'react-bootstrap'
-import Menu from '../components/Menu'
-import IconAuthor from '../assets/images/author.svg'
-import IconSubmit from '../assets/images/submit.svg'
 
 interface dataPostProps {
   id: string
@@ -104,8 +105,24 @@ const Single: React.FC = () => {
                   <img alt='hinh_anh' src={`http://localhost:6969/${dataPost.post.image}`} />
                 </div>
                 <ul className='home_wrapper-auth-social'>
-                  <li>Like</li>
-                  <li>Share</li>
+                  <li className='home_wrapper-share'>
+                    <FacebookShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      quote={dataPost.title}
+                      hashtag='#BOFK'
+                    >
+                      <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <LinkedinShareButton
+                      url={`http://localhost:6969/post/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <LinkedinIcon size={32} round />
+                    </LinkedinShareButton>
+                  </li>
                 </ul>
                 <div className='home_wrapper-detail-desc'>
                   <p className='home_wrapper-detail-desc--nd'>

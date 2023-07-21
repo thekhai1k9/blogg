@@ -50,7 +50,6 @@ const Home: React.FC = () => {
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => {
       const newPage = Math.max(prevPage - 1, 1)
-      console.log('Previous page:', newPage)
       return newPage
     })
   }
@@ -58,7 +57,6 @@ const Home: React.FC = () => {
   const handleNextPage = () => {
     setCurrentPage((prevPage) => {
       const newPage = Math.min(prevPage + 1, totalPages)
-      console.log('Next page:', newPage)
       return newPage
     })
   }

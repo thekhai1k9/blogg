@@ -14,11 +14,13 @@ const Footer: React.FC<Top5PostProps> = ({ top5Posts }) => {
         {top5Posts.length > 0 &&
           top5Posts.map((item: any, index: number) => (
             <Carousel.Item interval={1000} key={index}>
-              <Link to={`/post/${item.id}`}>
+              <Link to={`/post/${item.id}`} className='the_link'>
                 <img className='d-block w-100' src={`http://localhost:6969/${item.image}`} alt={`${item.image}`} />
                 <Carousel.Caption>
-                  <h3 style={{ color: 'black' }}>{item.title}</h3>
-                  <p style={{ color: 'black' }}>{item.desc}</p>
+                  <div className='home_wrapper_slider-box-content'>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
                 </Carousel.Caption>
               </Link>
             </Carousel.Item>

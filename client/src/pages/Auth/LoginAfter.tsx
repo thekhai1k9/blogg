@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Wrapper } from '../../pages/styles'
+import toast from 'react-hot-toast'
 
 const LoginAfter: React.FC = () => {
   const navigate = useNavigate()
@@ -13,6 +14,7 @@ const LoginAfter: React.FC = () => {
     if (logoutContext) {
       await logoutContext.logoutContext()
       navigate('/')
+      toast.success('Đăng xuất thành công')
     }
   }
   return (

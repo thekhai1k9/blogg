@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import authApi from '../../api/auth/authApi'
 import { AuthContext, AuthContextProps } from '../../context/authContext'
+import toast from 'react-hot-toast'
 
 export interface LoginForm {
   userName: string
@@ -38,9 +39,11 @@ const LoginBefore: React.FC = () => {
 
       window.localStorage.setItem('token', response.data.token)
       navigate('/')
-    } catch (error: unknown) {
+      toast.success('Đăng nhập thành công')
+    } catch (error: any) {
       setError(true)
-      // Xử lý lỗi hoặc hiển thị thông báo lỗi
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy ra'
+      toast.error(`${errorMessage}`)
     }
   }
   return (

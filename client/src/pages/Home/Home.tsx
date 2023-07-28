@@ -124,7 +124,7 @@ const Home: React.FC = () => {
         <Row>
           <Col xs={8}>
             <Row>
-              {posts.length > 0 &&
+              {posts.length > 0 ? (
                 posts.map((item: PostProps, index: number) => (
                   <Col xs={6} key={index}>
                     <div className='home_wrapper_box'>
@@ -149,7 +149,10 @@ const Home: React.FC = () => {
                       </div>
                     </div>
                   </Col>
-                ))}
+                ))
+              ) : (
+                <span>Null data</span>
+              )}
             </Row>
             <Row>
               <div className='home_wrapper_slider'>

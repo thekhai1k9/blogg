@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/styles/components_local_style.scss'
 
 interface ButtonProps {
   onClick?: () => void

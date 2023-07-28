@@ -6,6 +6,7 @@ import authApi from '../../api/auth/authApi'
 import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Wrapper } from '../styles'
 import { Col, Row } from 'react-bootstrap'
+import Button from '../../components/Button'
 
 export interface LoginForm {
   userName: string
@@ -134,7 +135,7 @@ const Login: React.FC = () => {
                 </label>
               </div>
               <div className='button-submit-form'>
-                <button type='submit'>Login</button>
+                <Button>Login now</Button>
               </div>
             </form>
           </Col>

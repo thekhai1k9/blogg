@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import authApi from '../../api/auth/authApi'
 import toast from 'react-hot-toast'
+import Button from '../../components/Button'
 
 interface RegisterForm {
   firstName: string
@@ -130,7 +131,7 @@ const Register: React.FC = () => {
                   <input type='text' name='phone' id='phone' onChange={handleChange} placeholder='Your Phone' />
                 </div>
                 <div className='button-submit-form'>
-                  <button type='submit'>Register</button>
+                  <Button>Register now</Button>
                 </div>
               </form>
             </Col>

@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Wrapper } from './styles'
+import { AuthContext } from '../context/authContext'
 
 const EditInfomation: React.FC = () => {
+  const currentUser: any = useContext(AuthContext)
+  console.log(currentUser)
+
+  const [firstName, setFirstName] = useState<string>('')
+  const [lastName, setlastName] = useState<string>('')
+  const [yourEmail, setYourEmail] = useState<string>('')
+  const [yourPhone, setYourPhone] = useState<string>('')
+
   return (
     <Wrapper>
       <div className='edit_info_wrapper'>
@@ -29,25 +38,45 @@ const EditInfomation: React.FC = () => {
                   <p className='edit_info_wrapper-label'>First Name:</p>
                 </Col>
                 <Col xs={9} style={{ marginBottom: 12 }}>
-                  <input className='edit_info_wrapper-input' type='text' />
+                  <input
+                    className='edit_info_wrapper-input'
+                    type='text'
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </Col>
                 <Col xs={3} style={{ marginBottom: 12 }}>
                   <p className='edit_info_wrapper-label'>Last Name:</p>
                 </Col>
                 <Col xs={9} style={{ marginBottom: 12 }}>
-                  <input className='edit_info_wrapper-input' type='text' />
+                  <input
+                    className='edit_info_wrapper-input'
+                    type='text'
+                    value={lastName}
+                    onChange={(e) => setlastName(e.target.value)}
+                  />
                 </Col>
                 <Col xs={3} style={{ marginBottom: 12 }}>
                   <p className='edit_info_wrapper-label'>Email:</p>
                 </Col>
                 <Col xs={9} style={{ marginBottom: 12 }}>
-                  <input className='edit_info_wrapper-input' type='text' />
+                  <input
+                    className='edit_info_wrapper-input'
+                    type='text'
+                    value={yourEmail}
+                    onChange={(e) => setYourEmail(e.target.value)}
+                  />
                 </Col>
                 <Col xs={3} style={{ marginBottom: 12 }}>
                   <p className='edit_info_wrapper-label'>Phone:</p>
                 </Col>
                 <Col xs={9} style={{ marginBottom: 12 }}>
-                  <input className='edit_info_wrapper-input' type='text' />
+                  <input
+                    className='edit_info_wrapper-input'
+                    type='text'
+                    value={yourPhone}
+                    onChange={(e) => setYourPhone(e.target.value)}
+                  />
                 </Col>
               </Row>
             </div>

@@ -115,6 +115,7 @@ const Write: React.FC = () => {
         <Form.Select
           aria-label='Default select example'
           value={typePost}
+          defaultValue={typePost}
           onChange={(e: any) => setTypePost(e.target.value)}
           style={{ width: 100 }}
         >
@@ -127,7 +128,7 @@ const Write: React.FC = () => {
       <div className='write_wrapper-menu'>
         <div className='write_wrapper-item'>
           <div className='write_wrapper-upload'>
-            <input type='file' name='image' onChange={handleImageChange} />
+            <input type='file' name='image' onChange={handleImageChange} className='input-fields' />
             {previewImage && (
               <img src={previewImage} alt='Preview' style={{ width: 170, height: 70, marginTop: '10px' }} />
             )}

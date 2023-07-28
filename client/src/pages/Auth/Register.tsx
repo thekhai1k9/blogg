@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { useNavigate } from 'react-router-dom'
-import authApi from '../../api/auth/authApi'
 import { Wrapper } from '../../pages/styles'
+import ImageRegister from '../../assets/images/image_register.jpg'
+import { Col, Row } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
+import authApi from '../../api/auth/authApi'
 import toast from 'react-hot-toast'
 
 interface RegisterForm {
@@ -27,7 +29,6 @@ const Register: React.FC = () => {
   })
 
   const navigate = useNavigate()
-  const [err, setErr] = useState<boolean>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -52,7 +53,6 @@ const Register: React.FC = () => {
       toast.success('Thêm mới người dùng thành công.')
       navigate('/login')
     } catch (error: unknown) {
-      setErr(true)
       toast.error('Có lỗi xảy ra tạo mới người dùng.')
       // Handle error or display error message
     }
@@ -60,39 +60,92 @@ const Register: React.FC = () => {
 
   return (
     <Wrapper>
-      <div>
+      <div className='register_home_page'>
         <Helmet>
           <title>Register</title>
         </Helmet>
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='firstName'>First Name</label>
-            <input type='text' name='firstName' id='firstName' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='lastName'>Last Name</label>
-            <input type='text' name='lastName' id='lastName' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input type='email' name='email' id='email' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='userName'>Username</label>
-            <input type='text' name='userName' id='userName' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='password' name='password' id='password' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='password'>Phone</label>
-            <input type='text' name='phone' id='phone' onChange={handleChange} />
-          </div>
-          <button type='submit'>Register</button>
-          {err && <p>This is valid error!, Please wait minutes</p>}
-        </form>
+        <div className='register_form'>
+          <Row>
+            <Col xs={6}>
+              <h2>Register</h2>
+              <form className='register_form_register' onSubmit={handleSubmit}>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input
+                    type='text'
+                    name='firstName'
+                    id='firstName'
+                    onChange={handleChange}
+                    placeholder='Your First Name'
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input
+                    type='text'
+                    name='lastName'
+                    id='lastName'
+                    onChange={handleChange}
+                    placeholder='Your Last Name'
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input type='email' name='email' id='email' onChange={handleChange} placeholder='Your Email' />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input
+                    type='text'
+                    name='userName'
+                    id='userName'
+                    onChange={handleChange}
+                    placeholder='Your User Name'
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input
+                    type='password'
+                    name='password'
+                    id='password'
+                    onChange={handleChange}
+                    placeholder='Your Password'
+                  />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='name'>
+                    <i className='zmdi zmdi-account material-icons-name'></i>
+                  </label>
+                  <input type='text' name='phone' id='phone' onChange={handleChange} placeholder='Your Phone' />
+                </div>
+                <div className='button-submit-form'>
+                  <button type='submit'>Register</button>
+                </div>
+              </form>
+            </Col>
+            <Col xs={6}>
+              <div className='register_image'>
+                <figure className='register_image-container'>
+                  <img src={ImageRegister} alt='Hình ảnh' />
+                </figure>
+                <Link to='/login' className='the_link'>
+                  I am already member
+                </Link>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
     </Wrapper>
   )

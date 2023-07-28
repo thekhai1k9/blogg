@@ -18,6 +18,16 @@
       color: inherit;
     }
 
+    // INPUT SEARCH HOME ================>
+    #home_input_search {
+      .form_input_search {
+        padding: 10px 30px;
+        font-weight: 600;
+        color: #f6a9b6;
+        cursor: pointer;
+      }
+    }
+
     // NAVBAR =========================>
     .navbar_wrapper {
       .navbar_container {
@@ -67,19 +77,29 @@
 
     // FOOTER =========================>
     .footer_wrapper {
-      margin-top: 100px;
-      padding: 20px;
-      // background-color: rgb(224, 221, 222);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      justify-content: space-between;
-      background: #000;
-      img {
-        height: 80px;
+      margin-top: 50px;
+      .footer_social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon_social_btn {
+          padding-right: 18px;
+        }
       }
-      span {
-        color: #ffffff;
+      .footer_cp_right {
+        padding: 10px 20px;
+        // background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-between;
+        img {
+          height: 100px;
+        }
+        span {
+          color: #000;
+          font-weight: 600;
+        }
       }
     }
 
@@ -228,6 +248,9 @@
       .write_wrapper-menu {
         .write_wrapper-item {
           .write_wrapper-upload {
+            .input-fields::-webkit-file-upload-button {
+              visibility: hidden;
+            }
           }
         }
       }
@@ -511,6 +534,14 @@
               text-align: left;
               font-size: 25px;
               font-weight: 600;
+            }
+          }
+          .carousel {
+            .carousel-control-prev {
+              .carousel-control-prev-icon {
+                color: red !important;
+                font-size: 100px;
+              }
             }
           }
         }
@@ -900,6 +931,179 @@
           margin-bottom: 10px;
           border-color: #ffc0cb;
           width: 100%;
+        }
+      }
+    }
+  }
+  .register_home_page {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 20px;
+    .register_form {
+      padding: 75px;
+      h2 {
+        line-height: 1.66;
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+        color: #222;
+        font-family: 'Poppins';
+        font-size: 36px;
+      }
+      .register_form_register {
+        .form-group {
+          position: relative;
+          margin-bottom: 25px;
+          overflow: hidden;
+          label {
+            position: absolute;
+            left: 0;
+            top: 50%;
+          }
+          input {
+            width: 100%;
+            display: block;
+            border: none;
+            border-bottom: 1px solid #999;
+            padding: 6px 30px;
+            font-family: 'Poppins';
+            box-sizing: border-box;
+            outline: none;
+          }
+        }
+        .button-submit-form {
+          position: relative;
+          margin-bottom: 25px;
+          // overflow: hidden;
+          button {
+            display: inline-block;
+            background: #6dabe4;
+            color: #fff;
+            border-bottom: none;
+            width: auto;
+            padding: 15px 39px;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -o-border-radius: 5px;
+            -ms-border-radius: 5px;
+            margin-top: 25px;
+            cursor: pointer;
+            outline: none;
+            border: none;
+          }
+        }
+      }
+      .register_image {
+        margin-top: 45px;
+        .register_image-container {
+          margin-bottom: 50px;
+          text-align: center;
+        }
+        .the_link {
+          font-size: 14px;
+          color: #222;
+          display: block;
+          text-align: center;
+          font-weight: 400;
+          font-family: 'Poppins';
+        }
+      }
+    }
+  }
+  .login_form_wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 20px;
+    .login_image {
+      margin-left: 110px;
+      margin-right: 20px;
+      margin-top: 10px;
+      .the_link {
+        font-size: 14px;
+        color: #222;
+        display: block;
+        font-weight: 400;
+        font-family: 'Poppins';
+        text-decoration: none;
+      }
+    }
+    .login_form {
+      margin-right: 90px;
+      margin-left: 80px;
+      width: 50%;
+      overflow: hidden;
+      h2 {
+        line-height: 1.66;
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+        color: #222;
+        font-family: 'Poppins';
+        font-size: 36px;
+        margin-bottom: 33px;
+      }
+      .form-group {
+        position: relative;
+        margin-bottom: 25px;
+        overflow: hidden;
+        label {
+          position: absolute;
+          left: 0;
+          top: 50%;
+        }
+        input {
+          width: 100%;
+          display: block;
+          border: none;
+          border-bottom: 1px solid #999;
+          padding: 6px 30px;
+          font-family: 'Poppins';
+          box-sizing: border-box;
+          outline: none;
+        }
+      }
+      .form-group_check-box {
+        position: relative;
+        margin-bottom: 25px;
+        overflow: hidden;
+        input {
+          width: 2em;
+          margin: 0;
+          padding: 0;
+        }
+        label {
+          display: inline-block;
+          line-height: 1.5em;
+          margin-top: 6px;
+        }
+      }
+      .button-submit-form {
+        position: relative;
+        margin-bottom: 25px;
+        // overflow: hidden;
+        button {
+          display: inline-block;
+          background: #6dabe4;
+          color: #fff;
+          border-bottom: none;
+          width: auto;
+          padding: 15px 39px;
+          border-radius: 5px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -o-border-radius: 5px;
+          -ms-border-radius: 5px;
+          margin-top: 25px;
+          cursor: pointer;
+          outline: none;
+          border: none;
         }
       }
     }

@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom'
 import postApi from '../../api/post/postApi'
 import Carousel from '../../components/Carousel'
 import Menu from '../../components/Menu'
-import SocialFooter from '../../components/SocialFooter'
 import SocialPage from '../../components/SocialPage'
 import { formatDateTime } from '../../helper/function_format'
 import { Wrapper } from '../../pages/styles'
 import PostTrending from '../../components/PostTrending'
+import Form from 'react-bootstrap/Form'
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
 
 interface PostProps {
   id: number
@@ -24,15 +25,17 @@ const Home: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPages, setTotalPages] = useState<number | any>(0)
+  const [typePost, setTypePost] = useState<string>('')
+  const [searchInput, setSearchInput] = useState<string>('')
 
   const postsPerPage = 6
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await postApi.getPosts({
-        title: '',
+        title: searchInput,
         desc: '',
-        type_post: '',
+        type_post: typePost,
         page: currentPage,
         limit: postsPerPage
       })
@@ -42,7 +45,7 @@ const Home: React.FC = () => {
       setTotalPages(totalPages) // Lưu vào state totalPages
     }
     fetchData()
-  }, [currentPage])
+  }, [currentPage, typePost, searchInput])
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => {
@@ -75,6 +78,48 @@ const Home: React.FC = () => {
 
   return (
     <Wrapper>
+      <div>
+        <Form>
+          <div id='home_input_search' className='mb-3'>
+            <Form.Check
+              inline
+              label='SHARE'
+              name='type_post'
+              type='radio'
+              className='form_input_search'
+              onChange={() => setTypePost('SHARE')}
+            />
+            <Form.Check
+              defaultChecked
+              inline
+              label='CODE'
+              name='type_post'
+              type='radio'
+              className='form_input_search'
+              onChange={() => setTypePost('CODE')}
+            />
+            <Form.Check
+              inline
+              label='BLOG'
+              name='type_post'
+              type='radio'
+              className='form_input_search'
+              onChange={() => setTypePost('BLOG')}
+            />
+            <Row>
+              <Col xs={6}>
+                <FloatingLabel controlId='floatingInputGrid' label='Tìm kiếm nhanh'>
+                  <Form.Control
+                    type='text'
+                    placeholder='Hello word.....'
+                    onChange={(e) => setSearchInput(e.target.value)}
+                  />
+                </FloatingLabel>
+              </Col>
+            </Row>
+          </div>
+        </Form>
+      </div>
       <div className='home_wrapper'>
         <Row>
           <Col xs={8}>
@@ -123,9 +168,6 @@ const Home: React.FC = () => {
                   <li onClick={handleNextPage}>Next</li>
                 </ul>
               </div>
-            </Row>
-            <Row>
-              <SocialFooter />
             </Row>
           </Col>
           <Col xs={4} style={{ paddingTop: 20 }}>

@@ -1,5 +1,3 @@
 export const LoadingSpinner = () => {
-  return (
-    <div>LoadingSpinner....</div>
-  )
+  return <div>LoadingSpinner....</div>
 }

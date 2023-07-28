@@ -10,7 +10,7 @@ const Footer: React.FC<Top5PostProps> = ({ top5Posts }) => {
   return (
     <div className='home_wrapper_slider-box'>
       <h3>Bài viết hay nhất</h3>
-      <Carousel>
+      <Carousel data-bs-theme='dark'>
         {top5Posts.length > 0 &&
           top5Posts.map((item: any, index: number) => (
             <Carousel.Item interval={1000} key={index}>

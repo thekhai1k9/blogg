@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row, Carousel } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 import {
   FacebookIcon,
@@ -22,6 +22,7 @@ import { formatDateTime } from '../helper/function_format'
 import { Wrapper } from './styles'
 import SocialPage from '../components/SocialPage'
 import PostTrending from '../components/PostTrending'
+import PageLoadDataNull from '.././components/PageLoadDataNull'
 
 interface dataPostProps {
   id: string
@@ -39,6 +40,7 @@ const Single: React.FC = () => {
   const { id } = useParams<{ id: any }>()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dataPost, setDataPost] = useState<dataPostProps>()
+  console.log('daa ta post ===>', dataPost)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [comments, setComments] = useState<any>()
   const [newComment, setNewComment] = useState<string>('')
@@ -92,6 +94,22 @@ const Single: React.FC = () => {
     }
     fetchData()
   }, [])
+
+  // Bài viết liên quan
+  const [relatePosts, setRelatePosts] = useState<any>()
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await postApi.getPosts({
+        title: '',
+        desc: '',
+        type_post: dataPost?.post?.type_post,
+        page: 1,
+        limit: 6
+      })
+      setRelatePosts(response.data.posts)
+    }
+    fetchData()
+  }, [dataPost?.post?.type_post])
 
   return (
     <Wrapper>
@@ -172,7 +190,7 @@ const Single: React.FC = () => {
                   <p className='home_wrapper-detail-copyright-ct'>
                     <Link to='/' className='the_link'>
                       Theo
-                      <span> Tien phong</span>
+                      <span> BOFK</span>
                     </Link>
                   </p>
                 </div>
@@ -188,7 +206,31 @@ const Single: React.FC = () => {
                 <p className='home_wrapper-relate--title'>Bài viết liên quan</p>
                 <div className='home_wrapper-relate-content'>
                   <div className='home_wrapper-relate-view'>
-                    <div className='home_wrapper-relate-slider'></div>
+                    <div className='home_wrapper-relate-slider'>
+                      <Carousel data-bs-theme='dark'>
+                        {relatePosts ? (
+                          relatePosts.map((item: any, index: number) => (
+                            <Carousel.Item interval={1000} key={index}>
+                              <Link to={`/post/${item.id}`} className='the_link'>
+                                <img
+                                  className='d-block w-100'
+                                  src={`http://localhost:6969/${item.image}`}
+                                  alt={`${item.image}`}
+                                />
+                                <Carousel.Caption>
+                                  <div className='home_wrapper_slider-box-content'>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                  </div>
+                                </Carousel.Caption>
+                              </Link>
+                            </Carousel.Item>
+                          ))
+                        ) : (
+                          <PageLoadDataNull />
+                        )}
+                      </Carousel>
+                    </div>
                   </div>
                 </div>
               </div>

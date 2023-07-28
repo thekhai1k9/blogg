@@ -6,7 +6,7 @@ interface Top5PostProps {
   top5Posts: any
 }
 
-const Footer: React.FC<Top5PostProps> = ({ top5Posts }) => {
+const SliderCarousel: React.FC<Top5PostProps> = ({ top5Posts }) => {
   return (
     <div className='home_wrapper_slider-box'>
       <h3>Có thể bạn sẽ thích?</h3>
@@ -30,4 +30,4 @@ const Footer: React.FC<Top5PostProps> = ({ top5Posts }) => {
   )
 }
 
-export default Footer
+export default SliderCarousel

@@ -67,8 +67,9 @@ const Write: React.FC = () => {
         toast.success('Bài viết đã được tạo mới thành công')
         navigate('/')
       }
-    } catch (error) {
-      toast.error(`Có lỗi xảy ra với bài viết của bạn. ${error}`)
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy ra'
+      toast.error(`${errorMessage}`)
     }
   }
 

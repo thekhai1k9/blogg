@@ -53,9 +53,9 @@ const Register: React.FC = () => {
       })
       toast.success('Thêm mới người dùng thành công.')
       navigate('/login')
-    } catch (error: unknown) {
-      toast.error('Có lỗi xảy ra tạo mới người dùng.')
-      // Handle error or display error message
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy ra'
+      toast.error(`${errorMessage}`)
     }
   }
 

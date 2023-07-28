@@ -525,11 +525,22 @@
                 display: block;
                 padding: 4px;
                 background-color: #000000;
-                color: #fff;
                 border-radius: 12px;
                 font-size: 12px;
                 text-align: center;
                 transition: display 0.3s;
+                color: #fff !important;
+                h3 {
+                  font-size: 16px;
+                  text-align: center;
+                  color: #fff !important;
+                }
+                p {
+                  overflow: hidden; /* Ẩn phần vượt quá khung */
+                  text-overflow: ellipsis; /* Hiển thị dấu "..." khi chuỗi quá dài */
+                  white-space: nowrap; /* Ngăn xuống dòng */
+                  max-width: 100vw; /* Độ rộng tối đa của thẻ <p> */
+                }
               }
             }
             img {

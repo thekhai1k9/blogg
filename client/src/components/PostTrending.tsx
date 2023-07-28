@@ -25,7 +25,7 @@ const PostTrending: React.FC<Top5PostProps> = ({ top5Posts }) => {
               {top5Posts &&
                 top5Posts.map((item: any, index: number) => (
                   <li className='home_wrapper_box-trending-item' key={index}>
-                    <Link to='/' className='the_link'>
+                    <Link to={`/post/${item.id}`} className='the_link'>
                       <span>{item.title}</span>
                       <p>{formatDateTime(item.createdAt)}</p>
                     </Link>

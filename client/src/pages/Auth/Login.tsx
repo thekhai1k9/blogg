@@ -44,8 +44,9 @@ const Login: React.FC = () => {
       window.localStorage.setItem('token', response.data.token)
       toast.success('Đăng nhập thành công')
       navigate('/')
-    } catch (error: unknown) {
-      toast.error(`Thông tin không chính xác. ${error}`)
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy vui lòng thử lại sau'
+      toast.error(`${errorMessage}`)
     }
   }
 

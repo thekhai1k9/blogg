@@ -11,6 +11,7 @@ import { Wrapper } from '../../pages/styles'
 import PostTrending from '../../components/PostTrending'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import PageLoadDataNull from '../../components/PageLoadDataNull'
 
 interface PostProps {
   id: number
@@ -83,6 +84,15 @@ const Home: React.FC = () => {
           <div id='home_input_search' className='mb-3'>
             <Form.Check
               inline
+              label='Tất cả'
+              name='type_post'
+              type='radio'
+              className='form_input_search'
+              onChange={() => setTypePost('')}
+              defaultChecked
+            />
+            <Form.Check
+              inline
               label='SHARE'
               name='type_post'
               type='radio'
@@ -90,7 +100,6 @@ const Home: React.FC = () => {
               onChange={() => setTypePost('SHARE')}
             />
             <Form.Check
-              defaultChecked
               inline
               label='CODE'
               name='type_post'
@@ -151,7 +160,7 @@ const Home: React.FC = () => {
                   </Col>
                 ))
               ) : (
-                <span>Null data</span>
+                <PageLoadDataNull />
               )}
             </Row>
             <Row>

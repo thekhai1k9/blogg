@@ -288,6 +288,8 @@
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap;
+              text-decoration: none;
+              color: #f5a2b0;
             }
           }
           .home_wrapper_box-author {
@@ -508,6 +510,14 @@
           margin-top: 20px;
           background: #fff;
           padding: 16px;
+          h3 {
+            color: #000;
+            font-size: 27px;
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 600;
+          }
           .the_link {
             &:hover {
               .home_wrapper_slider-box-content {

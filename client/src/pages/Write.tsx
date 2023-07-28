@@ -68,8 +68,7 @@ const Write: React.FC = () => {
         navigate('/')
       }
     } catch (error) {
-      console.error('Lỗi khi tạo mới bài viết:', error)
-      toast.error('Có lỗi xảy ra với bài viết của bạn')
+      toast.error(`Có lỗi xảy ra với bài viết của bạn. ${error}`)
     }
   }
 

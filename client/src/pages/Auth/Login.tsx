@@ -7,6 +7,7 @@ import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Wrapper } from '../styles'
 import { Col, Row } from 'react-bootstrap'
 import Button from '../../components/Button'
+import toast from 'react-hot-toast'
 
 export interface LoginForm {
   userName: string
@@ -40,12 +41,11 @@ const Login: React.FC = () => {
         userName: formValues.userName,
         password: formValues.password
       })
-
       window.localStorage.setItem('token', response.data.token)
+      toast.success('Đăng nhập thành công')
       navigate('/')
     } catch (error: unknown) {
-      console.log('Có lỗi trong quá trình xử lí', error)
-      // Xử lý lỗi hoặc hiển thị thông báo lỗi
+      toast.error(`Thông tin không chính xác. ${error}`)
     }
   }
 

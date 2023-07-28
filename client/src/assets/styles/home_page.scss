@@ -316,7 +316,7 @@
           background-color: #ffffff;
           padding: 10px;
           border-radius: 12px;
-          .the_link {
+          .authen--login-now {
             text-align: center;
             border-radius: 5px;
             padding: 10px 15px 5px;
@@ -396,7 +396,7 @@
               margin-top: 2px;
               display: flex;
               align-items: center;
-              justify-content: center;
+              justify-content: space-around;
               .the_link {
                 text-decoration: none;
                 button {
@@ -817,6 +817,8 @@
         }
         .home_wrapper_box-social-share {
           box-sizing: border-box;
+          font-style: italic;
+          font-family: 'Poppins';
         }
       }
       .home_wrapper_box-trending {

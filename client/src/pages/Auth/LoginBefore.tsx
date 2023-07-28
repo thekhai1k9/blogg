@@ -46,10 +46,8 @@ const LoginBefore: React.FC = () => {
   return (
     <div className='home_wrapper_box'>
       <aside className='home_wrapper_box-authen'>
-        <Link to='/' className='the_link'>
-          Đăng nhập ngay
-        </Link>
-        <h3 className='home_wrapper_box-authen-title'>Đăng nhập</h3>
+        <span className='authen--login-now'>Đã có tài khoản?</span>
+        <h3 className='home_wrapper_box-authen-title'>Đăng nhập ngay</h3>
         <form className='home_wrapper_box-form'>
           <div className='input_box'>
             <span className='icon'>

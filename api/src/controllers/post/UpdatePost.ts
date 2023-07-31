@@ -4,7 +4,8 @@ import Post from "../../models/post"
 const UpdatePost = async (req: Request, res: Response) => {
   try {
     const postId = req.params.id
-    const { title, desc, content, type_post } = req.body
+    
+    const { title, desc, content, type_post, view } = req.body
     const post = await Post.findByPk(postId)
     if (!post) {
       return res.status(404).json({
@@ -29,7 +30,8 @@ const UpdatePost = async (req: Request, res: Response) => {
     post.content = content
     post.desc = desc
     post.type_post = type_post
-    post.image = req.file ? req.file?.path.replace(/\\/g, "/") : ""
+    post.image = req.file ? req.file?.path.replace(/\\/g, "/") : post.image
+    post.view = view
 
     await post.save()
 

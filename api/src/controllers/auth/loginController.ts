@@ -34,7 +34,6 @@ export const  loginController = async (req: Request, res: Response) => {
             })
         }
     } catch (error) {
-        console.error("Đăng nhập thất bại:", error);
-        return res.status(500).json({ message: "Có lỗi từ server" });
+        return res.status(500).json({ message: "Có lỗi từ server" })
     }
 }

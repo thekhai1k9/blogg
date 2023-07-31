@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
-import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Wrapper } from '../../pages/styles'
-import SocialPage from '../../components/SocialPage'
-import PostTrending from '../../components/PostTrending'
+import toast from 'react-hot-toast'
 
 const LoginAfter: React.FC = () => {
   const navigate = useNavigate()
@@ -15,6 +14,7 @@ const LoginAfter: React.FC = () => {
     if (logoutContext) {
       await logoutContext.logoutContext()
       navigate('/')
+      toast.success('Đăng xuất thành công')
     }
   }
   return (
@@ -25,7 +25,7 @@ const LoginAfter: React.FC = () => {
           {currentUser?.currentUser && (
             <p className='home_wrapper_box-avatar'>
               <div className='home_wrapper_box-image'>
-                <img alt='hinh_anh' src={currentUser?.currentUser.image} />
+                <img alt='hinh_anh' src={`http://localhost:6969/${currentUser?.currentUser?.image}`} />
               </div>
               <p className='home_wrapper_box-name'>{`${currentUser?.currentUser.firstName} ${currentUser?.currentUser.lastName}`}</p>
               <ul className='home_wrapper_box-info-account'>
@@ -34,14 +34,21 @@ const LoginAfter: React.FC = () => {
                 <li>Thay đổi mật khẩu</li>
                 <li>Xóa tài khoản</li>
                 <li>
-                  <Link to='/edit-thong-tin'>Thay đổi thông tin</Link>
+                  <Link to='/edit-thong-tin' className='the_link'>
+                    Thay đổi thông tin
+                  </Link>
                 </li>
+                {currentUser?.currentUser?.isAdmin === '1' && (
+                  <li>
+                    <Link to='/write' className='the_link'>
+                      Viết bài
+                    </Link>
+                  </li>
+                )}
               </ul>
             </p>
           )}
         </div>
-        <SocialPage />
-        <PostTrending />
       </div>
     </Wrapper>
   )

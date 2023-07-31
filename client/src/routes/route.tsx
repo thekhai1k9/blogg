@@ -25,11 +25,10 @@ const router = (
       <Route path='/post/:id' element={<Single />} />
       <Route path='/write/:id' element={<Write />} />
       <Route path='/edit-thong-tin' element={<EditInfomation />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/write' element={<Write />} />
     </Route>
-    <Route path='/login' element={<Login />} />
-    <Route path='/register' element={<Register />} />
-    <Route path='/post/:id' element={<Single />} />
-    <Route path='/write' element={<Write />} />
   </Routes>
 )
 

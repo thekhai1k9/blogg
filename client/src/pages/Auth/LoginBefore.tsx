@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { AuthContext, AuthContextProps } from '../../context/authContext'
 import { Link, useNavigate } from 'react-router-dom'
 import authApi from '../../api/auth/authApi'
-import SocialPage from '../../components/SocialPage'
-import PostTrending from '../../components/PostTrending'
+import { AuthContext, AuthContextProps } from '../../context/authContext'
+import toast from 'react-hot-toast'
 
 export interface LoginForm {
   userName: string
@@ -40,18 +39,18 @@ const LoginBefore: React.FC = () => {
 
       window.localStorage.setItem('token', response.data.token)
       navigate('/')
-    } catch (error: unknown) {
+      toast.success('Đăng nhập thành công')
+    } catch (error: any) {
       setError(true)
-      // Xử lý lỗi hoặc hiển thị thông báo lỗi
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy ra'
+      toast.error(`${errorMessage}`)
     }
   }
   return (
     <div className='home_wrapper_box'>
       <aside className='home_wrapper_box-authen'>
-        <Link to='/' className='the_link'>
-          Đăng nhập
-        </Link>
-        <h3 className='home_wrapper_box-authen-title'>Đăng nhập</h3>
+        <span className='authen--login-now'>Đã có tài khoản?</span>
+        <h3 className='home_wrapper_box-authen-title'>Đăng nhập ngay</h3>
         <form className='home_wrapper_box-form'>
           <div className='input_box'>
             <span className='icon'>
@@ -73,8 +72,8 @@ const LoginBefore: React.FC = () => {
               placeholder='Mật khẩu'
             />
             {/* <label htmlFor='password'>Password</label> */}
-            {error && <span style={{ fontSize: 8 }}>Login failed. Please try again.</span>}
           </div>
+          {error && <span style={{ fontSize: 8, textAlign: 'center' }}>Login failed. Please try again.</span>}
           <div className='input_box-social'>
             <p className='input_box-social-content'>
               <Link to='/' className='the_link'>
@@ -112,8 +111,6 @@ const LoginBefore: React.FC = () => {
           {/* {error && <p>Login failed. Please try again.</p>} */}
         </form>
       </aside>
-      <SocialPage />
-      <PostTrending />
     </div>
   )
 }

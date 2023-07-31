@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom'
 import FacebookIcon from '../assets/images/facebook.svg'
 import InstagramIcon from '../assets/images/instagram.svg'
 import YoutobeIcon from '../assets/images/youtobe.svg'
-import { Wrapper } from '../pages/styles'
 
 const SocialPage: React.FC = () => {
   return (
-    <Wrapper>
+    <div className='home_wrapper_box'>
       <aside className='home_wrapper_box-social'>
         <h3 className='home_wrapper_box-social-title'>Tương tác xã hội</h3>
         <p className='home_wrapper_box-social-icon'>
-          <Link to='/' className='the_link'>
+          <Link to='https://www.facebook.com/' className='the_link'>
             <img alt='logo' src={FacebookIcon} />
           </Link>
-          <Link to='/' className='the_link'>
+          <Link to='https://www.instagram.com/' className='the_link'>
             <img alt='logo' src={InstagramIcon} />
           </Link>
-          <Link to='/' className='the_link'>
+          <Link to='https://www.youtube.com/' className='the_link'>
             <img alt='logo' src={YoutobeIcon} />
           </Link>
         </p>
@@ -25,7 +24,7 @@ const SocialPage: React.FC = () => {
           Content Share
         </div>
       </aside>
-    </Wrapper>
+    </div>
   )
 }
 

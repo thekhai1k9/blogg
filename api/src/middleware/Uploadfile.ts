@@ -4,7 +4,7 @@ import multer from "multer"
 // Configuration for multer storage
 export const storage = multer.diskStorage({
   destination: (req: Request, file: any, cb) => {
-    cb(null, "src/uploads")
+    cb(null, "uploads")
   },
   filename: (req: Request, file: any, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9)

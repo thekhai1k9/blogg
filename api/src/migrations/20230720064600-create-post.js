@@ -18,9 +18,6 @@ module.exports = {
       desc: {
         type: Sequelize.STRING
       },
-      date: {
-        type: Sequelize.DATE
-      },
       image: {
         type: Sequelize.STRING
       },
@@ -29,6 +26,9 @@ module.exports = {
       },
       type_post: {
         type: Sequelize.STRING
+      },
+      view: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

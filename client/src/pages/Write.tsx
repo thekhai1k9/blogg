@@ -49,8 +49,13 @@ const Write: React.FC = () => {
       formData.append('desc', desc)
       formData.append('type_post', typePost)
       formData.append('user_id', '1')
-      formData.append('image', file) // Thêm tệp hình ảnh vào formData
-      formData.append('date', '2023-07-04 14:19:56') // Thêm tệp hình ảnh vào formData
+      formData.append('view', '0')
+      // Kiểm tra xem tệp có thay đổi hay không
+      if (file) {
+        formData.append('image', file) // Thêm tệp mới vào formData nếu có tệp mới
+      } else {
+        formData.append('image', previewImage ?? '') // Thêm URL hình ảnh từ API chi tiết nếu không có tệp mới
+      }
 
       if (isEditMode) {
         await axios.put(`http://localhost:6969/api/update-post/${id}`, formData)
@@ -58,11 +63,12 @@ const Write: React.FC = () => {
         navigate('/')
       } else {
         await axios.post('http://localhost:6969/api/create-post', formData)
+        toast.success('Bài viết đã được tạo mới thành công')
         navigate('/')
       }
-    } catch (error) {
-      console.error('Lỗi khi tạo mới bài viết:', error)
-      toast.error('Có lỗi xảy ra khi tạo mới bài viết')
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Có lỗi xảy ra'
+      toast.error(`${errorMessage}`)
     }
   }
 
@@ -102,12 +108,13 @@ const Write: React.FC = () => {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
-        <div className='write_wrapper-editer'>
+        <div className='write_wrapper-editer-quill'>
           <ReactQuill className='editor' theme='snow' value={content} onChange={setContent} modules={modules} />
         </div>
         <Form.Select
           aria-label='Default select example'
           value={typePost}
+          defaultValue={typePost}
           onChange={(e: any) => setTypePost(e.target.value)}
           style={{ width: 100 }}
         >
@@ -119,12 +126,8 @@ const Write: React.FC = () => {
       </div>
       <div className='write_wrapper-menu'>
         <div className='write_wrapper-item'>
-          <h1>Publish</h1>
-          <span>
-            <b>Visibility: </b> Public
-          </span>
-          <div>
-            <input type='file' name='image' onChange={handleImageChange} />
+          <div className='write_wrapper-upload'>
+            <input type='file' name='image' onChange={handleImageChange} className='input-fields' />
             {previewImage && (
               <img src={previewImage} alt='Preview' style={{ width: 170, height: 70, marginTop: '10px' }} />
             )}

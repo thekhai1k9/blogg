@@ -8,26 +8,30 @@
   font-family: 'poppins', sans-serif;
 }
 
-.form__box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  
-  background: url('background6.jpg')no-repeat;
-  background-position: center;
-  background-size: cover;
-  .form__login__wraper {
-    position: relative;
-    width: 400px;
-    height: 450px;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+// BUTTON STYLE =============>
+.button-container {
+  display: inline-block;
+  background: #6dabe4;
+  color: #fff;
+  border-bottom: none;
+  width: auto;
+  padding: 15px 39px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
+
+.page_data_null_wrapper {
+  margin-top: 15px;
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-style: italic;
+}
+
+// PAGE NULL DATA ============>

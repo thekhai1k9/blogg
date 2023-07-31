@@ -16,6 +16,11 @@ const authApi = {
   logout: () => {
     const url = '/logout'
     return axiosClient.get(url)
+  },
+  // Update profile
+  updateProfile: (params: any) => {
+    const url = 'update-profile'
+    return axiosClient.put(url, params)
   }
 }
 

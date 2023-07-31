@@ -2,3 +2,15 @@
 
 //eslint-disable jsx-a11y/no-noninteractive-element-interactions
 
+ @media screen and (max-width: 1024px) {
+      .column {
+        flex: 100%;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+    }
+

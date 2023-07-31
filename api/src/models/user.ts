@@ -1,38 +1,38 @@
-import { Model, DataTypes, BuildOptions } from 'sequelize';
-import { sequelize } from '../config/connectDB';
+import { Model, DataTypes, BuildOptions } from 'sequelize'
+import { sequelize } from '../config/connectDB'
 
 export interface UserAttributes {
-  id?: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  userName: string;
-  password: string; 
-  image: string;
-  phone?: string;
+  id?: number
+  firstName: string
+  lastName: string
+  email: string
+  userName: string
+  password: string 
+  image: string
+  phone?: string
   isAdmin: boolean
 }
 
 class User extends Model<UserAttributes> implements UserAttributes {
-  public id!: number;
-  public firstName!: string;
-  public lastName!: string;
-  public email!: string;
-  public userName!: string;
-  public password!: string;
-  public image!: string;
-  public phone?: string;
-  public isAdmin!: boolean;
+  public id!: number
+  public firstName!: string
+  public lastName!: string
+  public email!: string
+  public userName!: string
+  public password!: string
+  public image!: string
+  public phone?: string
+  public isAdmin!: boolean
 
   static associate(models: any) {
     // Định nghĩa các mối quan hệ tại đây
     // User.belongsToMany(models.Project, {
     //   through: 'ProjectAssignments'
-    // });
+    // })
   }
 
   constructor(values?: UserAttributes, options?: BuildOptions) {
-    super(values, options);
+    super(values, options)
   }
 }
 
@@ -78,6 +78,6 @@ User.init(
     sequelize,
     modelName: 'User',
   }
-);
+)
 
-export default User;
+export default User

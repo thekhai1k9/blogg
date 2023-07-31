@@ -1,13 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { Col, Row, Carousel } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton
+} from 'react-share'
 import postApi from '../api/post/postApi'
+import IconAuthor from '../assets/images/author.svg'
+import IconSubmit from '../assets/images/submit.svg'
+import Menu from '../components/Menu'
 import { AuthContext } from '../context/authContext'
 import { formatDateTime } from '../helper/function_format'
 import { Wrapper } from './styles'
-import { Col, Row } from 'react-bootstrap'
-import Menu from '../components/Menu'
-import IconAuthor from '../assets/images/author.svg'
-import IconSubmit from '../assets/images/submit.svg'
+import SocialPage from '../components/SocialPage'
+import PostTrending from '../components/PostTrending'
+import PageLoadDataNull from '.././components/PageLoadDataNull'
 
 interface dataPostProps {
   id: string
@@ -25,6 +40,7 @@ const Single: React.FC = () => {
   const { id } = useParams<{ id: any }>()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dataPost, setDataPost] = useState<dataPostProps>()
+  console.log('daa ta post ===>', dataPost)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [comments, setComments] = useState<any>()
   const [newComment, setNewComment] = useState<string>('')
@@ -32,24 +48,16 @@ const Single: React.FC = () => {
 
   useEffect(() => {
     const fetchGetDetail = async () => {
-      try {
-        const response = await postApi.detailPost(id)
-        setDataPost(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy chi tiết bài post:', error)
-      }
+      const response = await postApi.detailPost(id)
+      setDataPost(response.data.data)
     }
     fetchGetDetail()
   }, [id])
 
   useEffect(() => {
     const fetchComments = async () => {
-      try {
-        const response = await postApi.detailCommentPost(id)
-        setComments(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi lấy danh sách bình luận:', error)
-      }
+      const response = await postApi.detailCommentPost(id)
+      setComments(response.data.data)
     }
     fetchComments()
   }, [id])
@@ -57,19 +65,15 @@ const Single: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (newComment) {
-      try {
-        await postApi.createCommentPost({
-          comment: newComment,
-          post_id: Number(id),
-          user_id: currentUser?.currentUser?.id
-        })
-        setNewComment('')
-        // Sau khi tạo bình luận mới, cập nhật danh sách bình luận bằng cách gọi lại API lấy danh sách
-        const response = await postApi.detailCommentPost(id)
-        setComments(response.data.data)
-      } catch (error) {
-        console.error('Lỗi khi gửi bình luận:', error)
-      }
+      await postApi.createCommentPost({
+        comment: newComment,
+        post_id: Number(id),
+        user_id: currentUser?.currentUser?.id
+      })
+      setNewComment('')
+      // Sau khi tạo bình luận mới, cập nhật danh sách bình luận bằng cách gọi lại API lấy danh sách
+      const response = await postApi.detailCommentPost(id)
+      setComments(response.data.data)
     }
   }
 
@@ -80,6 +84,32 @@ const Single: React.FC = () => {
   const handleToggleComments = () => {
     setShowAllComments(!showAllComments)
   }
+
+  // Fetch 5 posst
+  const [top5Posts, setTop5Posts] = useState<any>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await postApi.getTop5Posts()
+      setTop5Posts(response.data.data)
+    }
+    fetchData()
+  }, [])
+
+  // Bài viết liên quan
+  const [relatePosts, setRelatePosts] = useState<any>()
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await postApi.getPosts({
+        title: '',
+        desc: '',
+        type_post: dataPost?.post?.type_post,
+        page: 1,
+        limit: 6
+      })
+      setRelatePosts(response.data.posts)
+    }
+    fetchData()
+  }, [dataPost?.post?.type_post])
 
   return (
     <Wrapper>
@@ -96,13 +126,56 @@ const Single: React.FC = () => {
                     {`Tác giả: ${dataPost?.user?.lastName} ${dataPost?.user?.firstName}`}
                   </span>
                 </p>
-                <Link to={`/write/${id}`}>edit</Link>
+                {currentUser?.currentUser?.isAdmin === '1' && <Link to={`/write/${id}`}>Edit</Link>}
                 <div className='home_wrapper-detail-image'>
                   <img alt='hinh_anh' src={`http://localhost:6969/${dataPost.post.image}`} />
                 </div>
                 <ul className='home_wrapper-auth-social'>
-                  <li>Like</li>
-                  <li>Share</li>
+                  <li className='home_wrapper-share'>
+                    <FacebookShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      quote={dataPost.title}
+                      hashtag='#BOFK'
+                    >
+                      <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <LinkedinShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <LinkedinIcon size={32} round />
+                    </LinkedinShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <WhatsappShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <WhatsappIcon size={32} round />
+                    </WhatsappShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <TwitterShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                  </li>
+                  <li className='home_wrapper-share'>
+                    <TelegramShareButton
+                      url={`http://localhost:6969/post/${dataPost.id}`}
+                      // quote={dataPost.title}
+                      // hashtag='#BOFK'
+                    >
+                      <TelegramIcon size={32} round />
+                    </TelegramShareButton>
+                  </li>
                 </ul>
                 <div className='home_wrapper-detail-desc'>
                   <p className='home_wrapper-detail-desc--nd'>
@@ -117,7 +190,7 @@ const Single: React.FC = () => {
                   <p className='home_wrapper-detail-copyright-ct'>
                     <Link to='/' className='the_link'>
                       Theo
-                      <span> Tien phong</span>
+                      <span> BOFK</span>
                     </Link>
                   </p>
                 </div>
@@ -133,7 +206,31 @@ const Single: React.FC = () => {
                 <p className='home_wrapper-relate--title'>Bài viết liên quan</p>
                 <div className='home_wrapper-relate-content'>
                   <div className='home_wrapper-relate-view'>
-                    <div className='home_wrapper-relate-slider'></div>
+                    <div className='home_wrapper-relate-slider'>
+                      <Carousel data-bs-theme='dark'>
+                        {relatePosts ? (
+                          relatePosts.map((item: any, index: number) => (
+                            <Carousel.Item interval={1000} key={index}>
+                              <Link to={`/post/${item.id}`} className='the_link'>
+                                <img
+                                  className='d-block w-100'
+                                  src={`http://localhost:6969/${item.image}`}
+                                  alt={`${item.image}`}
+                                />
+                                <Carousel.Caption>
+                                  <div className='home_wrapper_slider-box-content'>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                  </div>
+                                </Carousel.Caption>
+                              </Link>
+                            </Carousel.Item>
+                          ))
+                        ) : (
+                          <PageLoadDataNull />
+                        )}
+                      </Carousel>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,7 +252,9 @@ const Single: React.FC = () => {
                 </div>
               </div>
               <div className='home_wrapper-ui-comment'>
-                <h5 className='home_wrapper-ui-comment-sum'>2 Comments</h5>
+                <h5 className='home_wrapper-ui-comment-sum'>{`${
+                  comments && comments.length > 0 ? comments.length + 1 : 0
+                } Comments`}</h5>
                 {comments &&
                   comments.slice(0, showAllComments ? comments.length : 5).map((comment: any) => (
                     <div className='home_wrapper-ui-comment-box' key={comment.id}>
@@ -178,46 +277,14 @@ const Single: React.FC = () => {
             </Col>
             <Col xs={4}>
               <Menu />
+              <SocialPage />
+              <PostTrending top5Posts={top5Posts} />
             </Col>
           </Row>
         </div>
       ) : (
         <span>Loading......</span>
       )}
-      {/* Hiển thị danh sách bình luận */}
-      {/* <div className='comments-wrapper'>
-        {comments &&
-          comments.slice(0, showAllComments ? comments.length : 5).map((comment: any) => (
-            <div key={comment.id} className='comment'>
-              <div
-                className='comment-user'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-              >
-                <img
-                  style={{ height: 30, width: 30, borderRadius: '50%' }}
-                  src={comment.user.image}
-                  alt='User Avatar'
-                />
-                <div className='comment-info'>
-                  <span>{`${comment.user.lastName} ${comment.user.firstName}`}</span>
-                  <p>{formatDateTime(comment.createdAt)}</p>
-                </div>
-                <div>
-                  <i className='fa-solid fa-ellipsis-vertical'></i>
-                </div>
-              </div>
-              <p>{comment.comment}</p>
-            </div>
-          ))}
-        {comments && comments.length > 5 && (
-          <button onClick={handleToggleComments}>{showAllComments ? 'Hide' : 'Read more'}</button>
-        )}
-      </div> */}
-      {/* Form để người dùng nhập bình luận mới */}
-      {/* <form onSubmit={handleSubmit}>
-        <textarea value={newComment} onChange={handleChange} />
-        <button type='submit'>Submit</button>
-      </form> */}
     </Wrapper>
   )
 }

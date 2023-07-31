@@ -20,7 +20,7 @@ const updateViewCount = async (req: Request, res: Response) => {
       message: "Update view thành công"
     })
   } catch (error) {
-    console.error("Lỗi khi update view bài viết:", error)
+    console.error("Có lỗi xảy xảy ra ở phía server:", error)
     return res.status(500).json({
       message: "Có lỗi xảy ra từ server"
     })

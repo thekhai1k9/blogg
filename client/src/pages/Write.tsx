@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useNavigate, useParams } from 'react-router-dom'
-import postApi from '../api/post/postApi'
+import postApi from '../api/Post/postApi'
 import Button from '../components/Button'
 import { toolbarOptions } from '../utils/EditorModule'
 

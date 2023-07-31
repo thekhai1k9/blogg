@@ -4,7 +4,7 @@ import { Wrapper } from '../../pages/styles'
 import ImageRegister from '../../assets/images/image_register.jpg'
 import { Col, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import authApi from '../../api/auth/authApi'
+import authApi from '../../api/Auth/authApi'
 import toast from 'react-hot-toast'
 import Button from '../../components/Button'
 

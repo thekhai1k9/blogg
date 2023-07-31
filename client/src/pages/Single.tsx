@@ -13,7 +13,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton
 } from 'react-share'
-import postApi from '../api/post/postApi'
+import postApi from '../api/Post/postApi'
 import IconAuthor from '../assets/images/author.svg'
 import IconSubmit from '../assets/images/submit.svg'
 import Menu from '../components/Menu'

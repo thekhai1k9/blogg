@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import authApi from '../../api/auth/authApi'
+import authApi from '../../api/Auth/authApi'
 import { AuthContext, AuthContextProps } from '../../context/authContext'
 import toast from 'react-hot-toast'
 

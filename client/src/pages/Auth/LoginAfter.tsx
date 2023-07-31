@@ -25,7 +25,7 @@ const LoginAfter: React.FC = () => {
           {currentUser?.currentUser && (
             <p className='home_wrapper_box-avatar'>
               <div className='home_wrapper_box-image'>
-                <img alt='hinh_anh' src={currentUser?.currentUser.image} />
+                <img alt='hinh_anh' src={`http://localhost:6969/${currentUser?.currentUser?.image}`} />
               </div>
               <p className='home_wrapper_box-name'>{`${currentUser?.currentUser.firstName} ${currentUser?.currentUser.lastName}`}</p>
               <ul className='home_wrapper_box-info-account'>

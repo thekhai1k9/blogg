@@ -7,7 +7,6 @@ const UpdatePost = async (req: Request, res: Response) => {
     
     const { title, desc, content, type_post, view } = req.body
     const post = await Post.findByPk(postId)
-    console.log(post)
     if (!post) {
       return res.status(404).json({
         message: "Post not found"

@@ -72,8 +72,8 @@ const LoginBefore: React.FC = () => {
               placeholder='Mật khẩu'
             />
             {/* <label htmlFor='password'>Password</label> */}
-            {error && <span style={{ fontSize: 8 }}>Login failed. Please try again.</span>}
           </div>
+          {error && <span style={{ fontSize: 8, textAlign: 'center' }}>Login failed. Please try again.</span>}
           <div className='input_box-social'>
             <p className='input_box-social-content'>
               <Link to='/' className='the_link'>

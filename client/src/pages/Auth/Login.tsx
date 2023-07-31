@@ -56,39 +56,6 @@ const Login: React.FC = () => {
         <title>Register</title>
       </Helmet>
       <section className='login_form_wrapper'>
-        {/* <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
-            <div className='input_box'>
-              <span className='icon'>
-                <i className='fa-regular fa-user'></i>
-              </span>
-              <input name='userName' id='userName' type='text' required onChange={handleChange} />
-              <label htmlFor='userName'>Tài khoản</label>
-            </div>
-            <div className='input_box'>
-              <span className='icon'>
-                <i className='fa-solid fa-lock'></i>
-              </span>
-              <input type='password' name='password' id='password' required onChange={handleChange} />
-              <label htmlFor='password'>Password</label>
-            </div>
-            <div className='remember-forgot'>
-              <label>
-                <input type='checkbox' name='rememberMe' />
-                Remember for me
-              </label>
-              <span>Forgot password</span>
-            </div>
-            <button className='type__button' type='submit'>
-              Login
-            </button>
-            <div className='register-page'>
-              <p>
-                Dont have an account? <Link to='/register'>Register</Link>
-              </p>
-            </div>
-            {error && <p>Login failed. Please try again.</p>}
-          </form> */}
         <Row>
           <Col xs={6}>
             <div className='login_image'>

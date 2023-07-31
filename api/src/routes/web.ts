@@ -42,8 +42,8 @@ const initWebRoutes = (app: any) => {
     router.post('/login', loginController)
     router.post('/register', registerController)
     router.get('/logout', logoutController)
-    router.get('/change-password', changePassword)
-    router.get('/update-profile', upload.single('image'), updateProfile)
+    router.post('/change-password', changePassword)
+    router.put('/update-profile', upload.single('image'), updateProfile)
 
 
     // Comment post

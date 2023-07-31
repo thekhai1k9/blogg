@@ -21,13 +21,12 @@ const Write: React.FC = () => {
   const [typePost, setTypePost] = useState<string>('')
   const [file, setFile] = useState<File | any>()
   const [previewImage, setPreviewImage] = useState<string | undefined>(undefined)
-  console.log(previewImage)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await postApi.detailPost(id)
         const { title, content, desc, type_post, image } = response.data.data.post
-        console.log(response.data.data.post)
         setTitle(title)
         setContent(content)
         setDesc(desc)

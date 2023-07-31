@@ -6,10 +6,10 @@ export const changePassword = async (req: Request, res: Response) => {
   try {
     const { userId, oldPassword, newPassword } = req.body
 
-    // Kiểm tra xem userId có tồn tại trong cơ sở dữ liệu hay không
+    // Kiểm tra xem userId
     const user = await User.findByPk(userId)
     if (!user) {
-      return res.status(404).json({ message: 'Người dùng không tồn tại, vui lòng thử lại' })
+      return res.status(404).json({ message: 'Người dùng không tồn tại, vui lòng kiểm lại' })
     }
     
     // Kiểm tra mật khẩu cũ
@@ -18,7 +18,7 @@ export const changePassword = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Mật khẩu cũ không chính xác' })
     }
 
-    // Hash mật khẩu mới và cập nhật vào cơ sở dữ liệu
+    // Hash mật khẩu mới và cập nhật
     const hashedNewPassword = await bcrypt.hash(newPassword, 10)
     user.password = hashedNewPassword
     await user.save()

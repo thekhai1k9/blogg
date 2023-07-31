@@ -1,6 +1,5 @@
 import express from "express"
 import getPostById from "../controllers/post/PostById"
-import userController from "../controllers/userController"
 import { loginController } from "../controllers/auth/loginController"
 import { logoutController } from "../controllers/auth/logoutController"
 import registerController from "../controllers/auth/registerController"
@@ -34,9 +33,6 @@ const initWebRoutes = (app: any) => {
     router.put('/updateViewCount/:id', updateViewCount)
     // Top 5 post view
     router.get('/top-5-bai-post', getTop5PostsByViews)
-
-
-    router.get('/user', userController)
     
     // Auththen
     router.post('/login', loginController)
